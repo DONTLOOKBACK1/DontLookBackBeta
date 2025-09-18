@@ -42,6 +42,8 @@ El proyecto utiliza un flujo de trabajo basado en Git Flow para mantener el cód
 
 ## 👥 Equipo de Desarrollo
 
-- **[Nombre del Integrante 1]** - `[Rol, ej: Project Manager / Documentación]`
-- **[Nombre del Integrante 2]** - `[Rol, ej: Lead Programmer]`
-- **[Nombre del Integrante 3]** - `[Rol, ej: Artista / Diseñador de niveles]`
+-   **William Martinez** - Documentación y Gestión de Proyecto (`/docs`)
+-   **Axel Henriquez** - Programación (`/src`)
+-   **Erick Ramirez y Eugenio Espronceda** - Arte y Diseño de Assets (`/assets`)
+-   **Sergio Flores y Alan Puente** - QA y Pruebas (`/tests`)
+-   **Nestor Ruiz** - Mantenimiento de README e Información General
