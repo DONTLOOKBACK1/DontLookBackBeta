@@ -1,0 +1,8 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+!.godot/icon.svg
+!.godot/project_name.godot
+
+# Mono-specific ignores
+.mono/
