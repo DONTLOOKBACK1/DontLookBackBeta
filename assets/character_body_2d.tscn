@@ -1,12 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://drp2jdsgpvscr"]
+[gd_scene load_steps=5 format=3 uid="uid://drp2jdsgpvscr"]
+
+[ext_resource type="Script" uid="uid://c1sr5hiloo1cc" path="res://src/character_body_2d.gd" id="1_dj0l2"]
+[ext_resource type="Texture2D" uid="uid://sncq7fc70l3c" path="res://assets/niveles/Backgrounds/personaje.png" id="2_uivfv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_186t8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_uivfv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f50pn"]
+size = Vector2(90, 104.5)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
+script = ExtResource("1_dj0l2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.110937, 0.105469)
 sprite_frames = SubResource("SpriteFrames_186t8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

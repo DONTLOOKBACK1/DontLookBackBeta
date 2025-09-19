@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://bkwrbjj2qj3ti"]
+
+[ext_resource type="Texture2D" uid="uid://gufe8pajypfj" path="res://assets/niveles/Backgrounds/fondo1.png" id="1_ncm4y"]
+[ext_resource type="Script" uid="uid://bx0kddcfcspm3" path="res://src/niveles/nivel_1.gd" id="1_rt3iq"]
+[ext_resource type="Texture2D" uid="uid://dij4xkv84nkqi" path="res://assets/niveles/Backgrounds/fondo2.png" id="2_mmg1b"]
+[ext_resource type="PackedScene" uid="uid://drp2jdsgpvscr" path="res://assets/character_body_2d.tscn" id="4_fe56f"]
+[ext_resource type="Script" uid="uid://b4v2p3sli0vev" path="res://src/niveles/transition_area.gd" id="4_ixo0a"]
+[ext_resource type="Script" uid="uid://ca1l53u6weiaf" path="res://src/niveles/izquierda.gd" id="6_ixo0a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jnnpg"]
+size = Vector2(1152, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ixo0a"]
+size = Vector2(1.60002, 129.6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_shsiw"]
+size = Vector2(8, 648)
+
+[node name="Nivel1" type="Node2D" node_paths=PackedStringArray("camera")]
+script = ExtResource("1_rt3iq")
+camera = NodePath("Camera2D")
+
+[node name="Fondo1" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_ncm4y")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(576, 628)
+shape = SubResource("RectangleShape2D_jnnpg")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 1
+position = Vector2(1728, 628)
+shape = SubResource("RectangleShape2D_jnnpg")
+
+[node name="Fondo2" type="Sprite2D" parent="."]
+position = Vector2(1728, 324)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_mmg1b")
+
+[node name="TransitionLeft" type="Area2D" parent="."]
+script = ExtResource("4_ixo0a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionLeft"]
+position = Vector2(1148, 336)
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_ixo0a")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+limit_right = 1920
+limit_bottom = 1080
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("4_fe56f")]
+position = Vector2(320, 288)
+
+[node name="TransitionRight" type="Area2D" parent="."]
+script = ExtResource("6_ixo0a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionRight"]
+position = Vector2(1156, 328)
+shape = SubResource("RectangleShape2D_shsiw")
+
+[connection signal="body_entered" from="TransitionLeft" to="TransitionLeft" method="_on_body_entered"]
+[connection signal="entered_from_left" from="TransitionLeft" to="." method="_on_derecha_entered_from_left"]
+[connection signal="body_entered" from="TransitionRight" to="TransitionRight" method="_on_body_entered"]
+[connection signal="entered_from_right" from="TransitionRight" to="." method="_on_izquierda_entered_from_right"]
