@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop, ci_devops]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build placeholder
+        run: echo "✅ Build ejecutado"
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v3
+      - name: Test placeholder
+        run: echo "🧪 Test ejecutado"
