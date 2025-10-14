@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://csb0n4owco5vu"]
+
+[ext_resource type="Texture2D" uid="uid://vk0ceyfkhbsl" path="res://assets/niveles/imagen_2025-10-12_174019275-removebg-preview.png" id="1_jlfq0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_40pye"]
+size = Vector2(258, 42)
+
+[node name="StaticBody2D" type="StaticBody2D" groups=["climbable"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_jlfq0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_40pye")

@@ -1,71 +1,120 @@
-[gd_scene load_steps=10 format=3 uid="uid://bkwrbjj2qj3ti"]
+[gd_scene load_steps=11 format=3 uid="uid://bkwrbjj2qj3ti"]
 
-[ext_resource type="Texture2D" uid="uid://gufe8pajypfj" path="res://assets/niveles/Backgrounds/fondo1.png" id="1_ncm4y"]
-[ext_resource type="Script" uid="uid://bx0kddcfcspm3" path="res://src/niveles/nivel_1.gd" id="1_rt3iq"]
-[ext_resource type="Texture2D" uid="uid://dij4xkv84nkqi" path="res://assets/niveles/Backgrounds/fondo2.png" id="2_mmg1b"]
+[ext_resource type="Texture2D" uid="uid://dfv4l065qexa" path="res://assets/niveles/Backgrounds/Imagen1.png" id="1_fe56f"]
+[ext_resource type="Script" uid="uid://chrc3mga8wmth" path="res://assets/niveles/nivel_1.gd" id="1_shsiw"]
+[ext_resource type="PackedScene" uid="uid://ijhvxyh78vpv" path="res://assets/enemigos.tscn" id="3_jnnpg"]
 [ext_resource type="PackedScene" uid="uid://drp2jdsgpvscr" path="res://assets/character_body_2d.tscn" id="4_fe56f"]
-[ext_resource type="Script" uid="uid://b4v2p3sli0vev" path="res://src/niveles/transition_area.gd" id="4_ixo0a"]
-[ext_resource type="Script" uid="uid://ca1l53u6weiaf" path="res://src/niveles/izquierda.gd" id="6_ixo0a"]
+[ext_resource type="PackedScene" uid="uid://cpe3mvaq6tqko" path="res://src/hud/hud.tscn" id="5_fe56f"]
+[ext_resource type="PackedScene" uid="uid://csb0n4owco5vu" path="res://src/niveles/plataforma1.tscn" id="6_ixo0a"]
+[ext_resource type="PackedScene" uid="uid://hofj61q8bm3q" path="res://src/hud/gameover.tscn" id="8_j1arf"]
+[ext_resource type="PackedScene" uid="uid://dvyipx320k27e" path="res://src/niveles/tutorial.tscn" id="9_j8iui"]
+[ext_resource type="PackedScene" uid="uid://cudl3bnsmx274" path="res://src/niveles/GoalArea.tscn" id="9_m7ov1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jnnpg"]
-size = Vector2(1152, 40)
+size = Vector2(7952, 44)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ixo0a"]
-size = Vector2(1.60002, 129.6)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_shsiw"]
-size = Vector2(8, 648)
-
-[node name="Nivel1" type="Node2D" node_paths=PackedStringArray("camera")]
-script = ExtResource("1_rt3iq")
-camera = NodePath("Camera2D")
+[node name="Nivel1" type="Node2D"]
+script = ExtResource("1_shsiw")
 
 [node name="Fondo1" type="Sprite2D" parent="."]
-position = Vector2(576, 324)
-scale = Vector2(0.6, 0.6)
-texture = ExtResource("1_ncm4y")
+position = Vector2(3376, 312)
+scale = Vector2(1.54662, 1.65161)
+texture = ExtResource("1_fe56f")
+region_enabled = true
+region_rect = Rect2(0, 207, 4365, 411)
+metadata/_edit_lock_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(576, 628)
+position = Vector2(3976, 638)
 shape = SubResource("RectangleShape2D_jnnpg")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-z_index = 1
-position = Vector2(1728, 628)
-shape = SubResource("RectangleShape2D_jnnpg")
-
-[node name="Fondo2" type="Sprite2D" parent="."]
-position = Vector2(1728, 324)
-scale = Vector2(0.6, 0.6)
-texture = ExtResource("2_mmg1b")
-
-[node name="TransitionLeft" type="Area2D" parent="."]
-script = ExtResource("4_ixo0a")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionLeft"]
-position = Vector2(1148, 336)
-scale = Vector2(5, 5)
-shape = SubResource("RectangleShape2D_ixo0a")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-limit_left = 0
-limit_top = 0
-limit_right = 1920
-limit_bottom = 1080
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("4_fe56f")]
-position = Vector2(320, 288)
+position = Vector2(112, 555)
+scale = Vector2(0.851104, 0.941042)
 
-[node name="TransitionRight" type="Area2D" parent="."]
-script = ExtResource("6_ixo0a")
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+limit_left = 0
+limit_top = 0
+limit_right = 6912
+limit_bottom = 630
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionRight"]
-position = Vector2(1156, 328)
-shape = SubResource("RectangleShape2D_shsiw")
+[node name="ENEMIGOS" parent="." instance=ExtResource("3_jnnpg")]
+position = Vector2(3304, 368)
 
-[connection signal="body_entered" from="TransitionLeft" to="TransitionLeft" method="_on_body_entered"]
-[connection signal="entered_from_left" from="TransitionLeft" to="." method="_on_derecha_entered_from_left"]
-[connection signal="body_entered" from="TransitionRight" to="TransitionRight" method="_on_body_entered"]
-[connection signal="entered_from_right" from="TransitionRight" to="." method="_on_izquierda_entered_from_right"]
+[node name="HUD" parent="." instance=ExtResource("5_fe56f")]
+
+[node name="PLATAFORMAS" type="Node2D" parent="."]
+
+[node name="StaticBody2D7" parent="PLATAFORMAS" instance=ExtResource("6_ixo0a")]
+position = Vector2(2216, 376)
+rotation = -1.57079
+scale = Vector2(2.03324, 1.00005)
+
+[node name="StaticBody2D6" parent="PLATAFORMAS" instance=ExtResource("6_ixo0a")]
+position = Vector2(2216, 376)
+rotation = -1.57079
+scale = Vector2(2.03324, 1.00005)
+
+[node name="StaticBody2D8" parent="PLATAFORMAS" instance=ExtResource("6_ixo0a")]
+position = Vector2(3656, 264)
+rotation = -1.57079
+scale = Vector2(2.03324, 1.00005)
+
+[node name="StaticBody2D5" parent="PLATAFORMAS" instance=ExtResource("6_ixo0a")]
+position = Vector2(1888, 264)
+rotation = -1.57079
+scale = Vector2(2.23324, 1.00005)
+
+[node name="StaticBody2D4" parent="PLATAFORMAS" instance=ExtResource("6_ixo0a")]
+position = Vector2(1152, 392)
+
+[node name="StaticBody2D3" parent="PLATAFORMAS" instance=ExtResource("6_ixo0a")]
+position = Vector2(872, 480)
+
+[node name="StaticBody2D2" parent="PLATAFORMAS" instance=ExtResource("6_ixo0a")]
+position = Vector2(592, 608)
+scale = Vector2(1, 2.48)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameOverScreen" parent="CanvasLayer" instance=ExtResource("8_j1arf")]
+visible = false
+
+[node name="GoalArea" parent="." instance=ExtResource("9_m7ov1")]
+position = Vector2(5616, 576)
+
+[node name="TUTORIALTEXTO" type="Node2D" parent="."]
+
+[node name="TUTORIAL" parent="TUTORIALTEXTO" instance=ExtResource("9_j8iui")]
+position = Vector2(192, 560)
+mensaje_tutorial = "Tu eres Akira Utiliza las flechas para moverte y espacio para saltar"
+
+[node name="TUTORIAL2" parent="TUTORIALTEXTO" instance=ExtResource("9_j8iui")]
+position = Vector2(1152, 328)
+mensaje_tutorial = "Tranquilo, no te romperas las piernas"
+
+[node name="TUTORIAL3" parent="TUTORIALTEXTO" instance=ExtResource("9_j8iui")]
+position = Vector2(1632, 592)
+mensaje_tutorial = "Pulsa \"c\" para agacharte"
+
+[node name="TUTORIAL4" parent="TUTORIALTEXTO" instance=ExtResource("9_j8iui")]
+position = Vector2(2040, 600)
+mensaje_tutorial = "El parkour siempre es una opcion algunas paredes son escalables"
+
+[node name="TUTORIAL5" parent="TUTORIALTEXTO" instance=ExtResource("9_j8iui")]
+position = Vector2(2568, 600)
+mensaje_tutorial = "¡CUIDADO! Presiona \"x\" para atacar, no te dejes golpear ni te acerques mucho"
+
+[node name="TUTORIAL6" parent="TUTORIALTEXTO" instance=ExtResource("9_j8iui")]
+position = Vector2(4048, 592)
+mensaje_tutorial = "Tal vez no recuerdes mucho, pero tienes que continuar Akira"
+
+[node name="TUTORIAL7" parent="TUTORIALTEXTO" instance=ExtResource("9_j8iui")]
+position = Vector2(4872, 592)
+mensaje_tutorial = "Sigue hasta la meta"
+
+[connection signal="health_updated" from="CharacterBody2D" to="HUD" method="_on_character_body_2d_health_updated"]
+[connection signal="player_died" from="CharacterBody2D" to="." method="_on_character_body_2d_player_died"]

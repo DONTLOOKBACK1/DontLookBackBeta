@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpe3mvaq6tqko"]
+
+[ext_resource type="Script" uid="uid://bffmol7pdhnwu" path="res://hud.gd" id="1_t0re6"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t0re6")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthSprite" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -314.0
+offset_bottom = 213.0
+grow_horizontal = 0
+expand_mode = 1
