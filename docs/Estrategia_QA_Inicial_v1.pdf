@@ -1,0 +1,39 @@
+1. Introducción
+Propósito: Este documento describe el plan de pruebas inicial para el videojuego "Dont look back".
+
+Objetivos: Asegurar la jugabilidad principal, la accesibilidad y el flujo del juego.
+
+2. Alcance de las Pruebas
+Jugabilidad:
+
+Movimiento del personaje: Verificar que el personaje se mueva, salte y escale sin problemas.
+
+Comportamiento de la sombra: Asegurar que la sombra persiga al jugador y lo atrape al contacto.
+
+Interacción con el entorno: Probar la colisión con obstáculos y la recolección de objetos.
+
+Flujo del juego:
+
+Transiciones: Probar la carga de niveles y el regreso al menú principal.
+
+Menús: Asegurar que los botones de "Jugar", "Opciones" y "Salir" funcionen correctamente.
+
+Accesibilidad:
+
+Controles: Verificar que los controles puedan reasignarse.
+
+Audio: Comprobar que el volumen del sonido y la música se puedan ajustar.
+
+3. Criterios de Aceptación
+JUG-01: El personaje debe completar un nivel si llega al final sin ser atrapado por la sombra.
+
+JUG-02: El juego debe mostrar una pantalla de "Game Over" cuando la sombra atrape al jugador.
+
+FLU-01: Al seleccionar un nivel del menú, el juego debe cargarlo en menos de X segundos.
+
+ACC-01: El juego debe permitir al jugador cambiar la configuración de audio sin problemas.
+
+4. Metodología de Pruebas
+Pruebas Manuales: Se realizarán pruebas manuales exploratorias y basadas en los casos de prueba definidos.
+
+Herramientas: Se utilizarán las plantillas bug_template.md y testcase_template.md para documentar los resultados.
