@@ -36,6 +36,7 @@ jobs:
           export-presets: 'export_presets.cfg'
           preset: 'Windows Desktop'
           output-dir: 'build'
+          template-download: true   # <--- esto descarga los export templates
 
       # Paso 5: Crear zip del build
       - name: Create zip of build
