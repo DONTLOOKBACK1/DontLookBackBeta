@@ -30,13 +30,13 @@ jobs:
 
       # Paso 4: Exportar el proyecto con Godot
       - name: Export with Godot Export Action
-        uses: firebelley/godot-export@v2   # <- cambio importante de v1 a v2
+        uses: firebelley/godot-export@v2   # usamos solo v2
         with:
           godot-version: '4.5.1-stable'
           export-presets: 'export_presets.cfg'
           preset: 'Windows Desktop'
           output-dir: 'build'
-          template-download: true   # descarga los export templates automáticamente
+          template-download: true   # solo una vez
 
       # Paso 5: Crear zip del build
       - name: Create zip of build
