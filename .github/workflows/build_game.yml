@@ -7,13 +7,12 @@ on:
 
 jobs:
   build:
-    name: Export Godot Project
     runs-on: ubuntu-latest
 
     steps:
-      # Paso 1: Clonar el repositorio con LFS
+      # Paso 1: Clonar el repositorio
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
         with:
           lfs: true
 
@@ -24,7 +23,7 @@ jobs:
           distribution: temurin
           java-version: '11'
 
-      # Paso 3: Instalar unzip (necesario para descomprimir plantillas)
+      # Paso 3: Instalar unzip
       - name: Install unzip
         run: sudo apt-get update && sudo apt-get install -y unzip
 
@@ -33,12 +32,11 @@ jobs:
         uses: firebelley/godot-export@v7.0
         with:
           godot-version: '4.5.1-stable'
-          export-presets: './.godot/export_presets.cfg'   # Archivo dentro de la carpeta .godot
-          preset: 'Windows Desktop'                        # Nombre del preset definido
-          output-dir: 'build'                              # Carpeta de salida
-          export-path: 'build/DontLookBackBeta.exe'        # Nombre del ejecutable
-          template-download: true                          # Descarga los export templates automáticamente
+          export-preset: 'Windows Desktop'                  # Nombre del preset
+          export-path: 'build/DontLookBackBeta.exe'         # Archivo de salida
+          use-godot-version: '4.5.1-stable'
           debug: false
+          template-download: true                           # Descarga plantillas automáticamente
 
       # Paso 5: Crear zip del build
       - name: Create zip of build
