@@ -11,20 +11,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Paso 1: Descargar el repositorio y Git LFS
       - name: Checkout repository (with LFS)
         uses: actions/checkout@v4
         with:
           lfs: true
 
-      - name: Set up Java (required by some Godot export templates)
+      # Paso 2: Configurar Java (necesario para algunas plantillas de exportación de Godot)
+      - name: Set up Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '11'
 
+      # Paso 3: Instalar unzip (ayuda a descomprimir plantillas si es necesario)
       - name: Install unzip (helper)
         run: sudo apt-get update && sudo apt-get install -y unzip
 
+      # Paso 4: Exportar el proyecto con Godot
       - name: Export with Godot Export Action
         uses: firebelley/godot-export@v1
         with:
@@ -33,11 +37,13 @@ jobs:
           preset: 'Windows Desktop'
           output-dir: 'build'
 
+      # Paso 5: Crear zip del build
       - name: Create zip of build
         run: |
           mkdir -p artifacts
-          zip -r artifacts/windows-build.zip *.exe *.pck
+          zip -r artifacts/windows-build.zip build/*
 
+      # Paso 6: Subir artifact a GitHub Actions
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
