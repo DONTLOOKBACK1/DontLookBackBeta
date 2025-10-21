@@ -3,7 +3,7 @@ name: Build Godot Game
 on:
   push:
     branches:
-      - develop   # se ejecuta solo en tu rama
+      - develop   # se ejecuta solo en la rama develop
 
 jobs:
   build:
@@ -17,26 +17,26 @@ jobs:
         with:
           lfs: true
 
-      # Paso 2: Configurar Java (necesario para algunas plantillas de exportación de Godot)
+      # Paso 2: Configurar Java (necesario para algunas plantillas de Godot)
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '11'
 
-      # Paso 3: Instalar unzip (ayuda a descomprimir plantillas si es necesario)
-      - name: Install unzip (helper)
+      # Paso 3: Instalar unzip (necesario para descomprimir plantillas)
+      - name: Install unzip
         run: sudo apt-get update && sudo apt-get install -y unzip
 
       # Paso 4: Exportar el proyecto con Godot
       - name: Export with Godot Export Action
-        uses: firebelley/godot-export@v2   # usamos solo v2
+        uses: firebelley/godot-export@v7.0.0
         with:
           godot-version: '4.5.1-stable'
-          export-presets: 'export_presets.cfg'
-          preset: 'Windows Desktop'
+          export-presets: './.godot/export_presets.cfg'   # Archivo dentro de la carpeta .godot
+          preset: 'Windows Desktop'                        # Nombre del preset definido
           output-dir: 'build'
-          template-download: true   # solo una vez
+          template-download: true                          # Descarga los export templates automáticamente
 
       # Paso 5: Crear zip del build
       - name: Create zip of build
