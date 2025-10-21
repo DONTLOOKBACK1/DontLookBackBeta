@@ -3,7 +3,7 @@ name: Build Godot Game
 on:
   push:
     branches:
-      - ci_devops   # se ejecuta solo en tu rama
+      - develop   # se ejecuta solo en tu rama
 
 jobs:
   build:
