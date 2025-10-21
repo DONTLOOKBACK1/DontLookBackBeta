@@ -28,9 +28,9 @@ jobs:
       - name: Export with Godot Export Action
         uses: firebelley/godot-export@v1
         with:
-          godot-version: '4.2.4'        # Ajusta según la versión de tu proyecto
+          godot-version: '4.5.1-stable'
           export-presets: 'export_presets.cfg'
-          preset: 'Windows Desktop'     # Ajusta al nombre real del preset
+          preset: 'Windows Desktop'
           output-dir: 'build'
 
       - name: Create zip of build
@@ -44,3 +44,4 @@ jobs:
         with:
           name: windows-build
           path: artifacts/windows-build.zip
+
