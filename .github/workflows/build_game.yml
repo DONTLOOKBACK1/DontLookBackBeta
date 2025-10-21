@@ -1,0 +1,46 @@
+name: Build Godot Game
+
+on:
+  push:
+    branches:
+      - ci_devops   # se ejecuta solo en tu rama
+
+jobs:
+  build:
+    name: Export Godot Project
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository (with LFS)
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Set up Java (required by some Godot export templates)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '11'
+
+      - name: Install unzip (helper)
+        run: sudo apt-get update && sudo apt-get install -y unzip
+
+      - name: Export with Godot Export Action
+        uses: firebelley/godot-export@v1
+        with:
+          godot-version: '4.2.4'        # Ajusta según la versión de tu proyecto
+          export-presets: 'export_presets.cfg'
+          preset: 'Windows Desktop'     # Ajusta al nombre real del preset
+          output-dir: 'build'
+
+      - name: Create zip of build
+        run: |
+          mkdir -p artifacts
+          cd build || exit 0
+          zip -r ../artifacts/windows-build.zip . || true
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-build
+          path: artifacts/windows-build.zip
