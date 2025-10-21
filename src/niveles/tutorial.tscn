@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvyipx320k27e"]
+
+[ext_resource type="Script" uid="uid://chjd7ip6gr86h" path="res://assets/niveles/tutorial.gd" id="1_baw2y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7ov1"]
+size = Vector2(138, 130)
+
+[node name="TUTORIAL" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_baw2y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -72)
+scale = Vector2(1.12, 1.07143)
+shape = SubResource("RectangleShape2D_m7ov1")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -120.0
+offset_top = -152.0
+offset_right = 98.0
+offset_bottom = -129.0
+scale = Vector2(1.09508, 1.20575)
+text = "Presiona espacio para saltar"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
