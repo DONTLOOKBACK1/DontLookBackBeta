@@ -1,50 +1,38 @@
-name: Build Godot Game
-
-on:
-  push:
-    branches:
-      - develop   # se ejecuta solo en la rama develop
-
 jobs:
   build:
+    name: Export Godot Project
     runs-on: ubuntu-latest
 
     steps:
-      # Paso 1: Clonar el repositorio
+      # Paso 1: Clonar el repo
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           lfs: true
 
-      # Paso 2: Configurar Java (necesario para exportar en algunas plataformas)
-      - name: Set up Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '11'
-
-      # Paso 3: Instalar unzip
+      # Paso 2: Instalar unzip
       - name: Install unzip
         run: sudo apt-get update && sudo apt-get install -y unzip
 
-      # Paso 4: Exportar el proyecto con Godot
+      # Paso 3: Exportar con Godot
       - name: Export with Godot Export Action
-        uses: firebelley/godot-export@v7.0
+        uses: firebelley/godot-export@v7.0.0
         with:
           godot-version: '4.5.1-stable'
-          export-preset: 'Windows Desktop'                  # Nombre del preset
-          export-path: 'build/DontLookBackBeta.exe'         # Archivo de salida
-          use-godot-version: '4.5.1-stable'
+          export-presets: './export_presets.cfg'   # Ajusta según la ubicación real
+          preset: 'Windows Desktop'
+          output-dir: 'build'
+          export-path: 'build/DontLookBackBeta.exe'
+          template-download: true
           debug: false
-          template-download: true                           # Descarga plantillas automáticamente
 
-      # Paso 5: Crear zip del build
+      # Paso 4: Crear zip del build
       - name: Create zip of build
         run: |
           mkdir -p artifacts
           zip -r artifacts/windows-build.zip build/*
 
-      # Paso 6: Subir artifact a GitHub Actions
+      # Paso 5: Subir artifact
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
