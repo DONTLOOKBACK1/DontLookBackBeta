@@ -1,7 +1,8 @@
+.github/workflows/build_game.yml
 jobs:
   build:
     name: Export Godot Project
-    runs-on: ubuntu-latest
+    runs-on: windows-latest   # Cambiado a Windows
 
     steps:
       # Paso 1: Clonar el repo
@@ -10,31 +11,27 @@ jobs:
         with:
           lfs: true
 
-      # Paso 2: Instalar unzip
-      - name: Install unzip
-        run: sudo apt-get update && sudo apt-get install -y unzip
-
-      # Paso 3: Exportar con Godot
+      # Paso 2: Exportar con Godot
       - name: Export with Godot Export Action
         uses: firebelley/godot-export@v7.0.0
         with:
           godot-version: '4.5.1-stable'
-          export-presets: './export_presets.cfg'
+          export-presets: './export_presets.cfg'   # Ajusta según la ubicación real
           preset: 'Windows Desktop'
           output-dir: 'build'
           export-path: 'build/DontLookBackBeta.exe'
           template-download: true
           debug: false
 
+      # Paso 3: Verificar build generado
+      - name: List build folder
+        run: dir build   # En Windows se usa 'dir' en lugar de 'ls'
+
       # Paso 4: Crear zip del build
       - name: Create zip of build
         run: |
-          mkdir -p artifacts
-          zip -r artifacts/windows-build.zip build/*
-
-      # Paso 4.5: Verificar que el zip se haya creado correctamente
-      - name: Verify artifact file exists
-        run: ls -lh artifacts/
+          mkdir artifacts
+          powershell Compress-Archive -Path build\* -DestinationPath artifacts\windows-build.zip
 
       # Paso 5: Subir artifact
       - name: Upload build artifact
