@@ -1,8 +1,7 @@
-.github/workflows/build_game.yml
 jobs:
   build:
     name: Export Godot Project
-    runs-on: windows-latest   # Cambiado a Windows
+    runs-on: windows-latest   # Runner Windows
 
     steps:
       # Paso 1: Clonar el repo
@@ -25,15 +24,21 @@ jobs:
 
       # Paso 3: Verificar build generado
       - name: List build folder
-        run: dir build   # En Windows se usa 'dir' en lugar de 'ls'
+        run: dir build   # Comando Windows para listar archivos
 
-      # Paso 4: Crear zip del build
+      # Paso 4: Crear artifacts folder
+      - name: Create artifacts folder
+        run: mkdir artifacts
+
+      # Paso 5: Crear zip del build
       - name: Create zip of build
-        run: |
-          mkdir artifacts
-          powershell Compress-Archive -Path build\* -DestinationPath artifacts\windows-build.zip
+        run: powershell -Command "Compress-Archive -Path 'build\*' -DestinationPath 'artifacts\windows-build.zip'"
 
-      # Paso 5: Subir artifact
+      # Paso 6: Verificar que el zip se haya creado correctamente
+      - name: Verify artifact file exists
+        run: dir artifacts
+
+      # Paso 7: Subir artifact
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
