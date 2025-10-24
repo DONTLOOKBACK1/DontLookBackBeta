@@ -19,7 +19,7 @@ jobs:
         uses: firebelley/godot-export@v7.0.0
         with:
           godot-version: '4.5.1-stable'
-          export-presets: './export_presets.cfg'   # Ajusta según la ubicación real
+          export-presets: './export_presets.cfg'
           preset: 'Windows Desktop'
           output-dir: 'build'
           export-path: 'build/DontLookBackBeta.exe'
@@ -31,6 +31,10 @@ jobs:
         run: |
           mkdir -p artifacts
           zip -r artifacts/windows-build.zip build/*
+
+      # Paso 4.5: Verificar que el zip se haya creado correctamente
+      - name: Verify artifact file exists
+        run: ls -lh artifacts/
 
       # Paso 5: Subir artifact
       - name: Upload build artifact
