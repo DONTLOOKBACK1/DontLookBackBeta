@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://ijhvxyh78vpv"]
+[gd_scene load_steps=11 format=3 uid="uid://ijhvxyh78vpv"]
 
 [ext_resource type="Script" uid="uid://dmeamwjpfaafp" path="res://enemigos.gd" id="1_h6ihb"]
 [ext_resource type="Texture2D" uid="uid://x32ky6w15y7k" path="res://assets/enemys/Sprite enemigo1.png" id="2_uap5i"]
+[ext_resource type="AudioStream" uid="uid://b5vt66dm8478c" path="res://assets/effects/sonido monstruo recortado.mp3" id="3_df24r"]
 
 [sub_resource type="Animation" id="Animation_17l3d"]
 length = 0.001
@@ -83,7 +84,7 @@ size = Vector2(35.7635, 83.9078)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l8myd"]
 size = Vector2(92.6178, 174.27)
 
-[node name="ENEMIGOS" type="CharacterBody2D" groups=["enemigos"]]
+[node name="eater" type="CharacterBody2D" groups=["enemigos"]]
 scale = Vector2(0.39146, 0.413152)
 collision_layer = 8
 script = ExtResource("1_h6ihb")
@@ -143,3 +144,12 @@ target_position = Vector2(36.0111, -40.2704)
 [node name="EdgeDetector" type="RayCast2D" parent="."]
 scale = Vector2(5.675, 2.885)
 target_position = Vector2(28.8089, 46.9821)
+
+[node name="GrowlSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_df24r")
+
+[node name="GrowlTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="GrowlTimer" to="." method="_on_growl_timer_timeout"]

@@ -11,9 +11,18 @@ config_version=5
 [application]
 
 config/name="DONTLOOKBACK"
-run/main_scene="uid://bkwrbjj2qj3ti"
+run/main_scene="uid://cb3bvghfex7nj"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://heod31wy7ox3"
+
+[autoload]
+
+SaveManager="*res://src/saves/SaveManager.gd"
+MusicManager="*res://src/saves/MusicManager.tscn"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [dotnet]
 

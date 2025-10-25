@@ -1,20 +1,32 @@
 extends CanvasLayer
 
+var completed_level_id = 1
+const MAX_LEVEL = 3
 
-func _on_button_pressed():
-	 # 1. CLAVE: Despausar el juego (Permite que el motor procese el cambio de escena)
+@onready var next_level_button = $CenterContainer/VBoxContainer/NextLevelButton
+@onready var menu_button = $CenterContainer/VBoxContainer/MenuButton
+
+func _ready():
+	next_level_button.pressed.connect(_on_next_level_pressed)
+	menu_button.pressed.connect(_on_menu_pressed)
+	
+	if completed_level_id >= MAX_LEVEL:
+		next_level_button.visible = false
+		$CenterContainer/VBoxContainer/Label.text = "¡DEMO COMPLETADA!"
+
+func _on_next_level_pressed():
+	var next_level_num = completed_level_id + 1
+	
 	get_tree().paused = false
+	queue_free()
 	
-	# 2. Eliminar la pantalla de victoria del árbol
-	# Esto es buena práctica para limpiar antes de cargar otra escena.
-	queue_free() 
+	# Esta ruta a los niveles (src/niveles) ya estaba bien
+	get_tree().change_scene_to_file("res://src/niveles/nivel_" + str(next_level_num) + ".tscn")
+	SaveManager.is_in_game_level = true
+
+func _on_menu_pressed():
+	get_tree().paused = false
+	queue_free()
 	
-	# 3. Intentar cambiar la escena y verificar si hubo un error.
-	var error = get_tree().change_scene_to_file("res://assets/niveles/nivel_1.tscn")
-	
-	if error != OK:
-		# Si hay un error (ej. ruta incorrecta), Godot lo reportará aquí.
-		print("ERROR AL CARGAR ESCENA: ", error)
-		print("Ruta usada: res://assets/niveles/nivel_1.tscn")
-	else:
-		print("Carga de nivel exitosa. El juego debería reanudarse.")
+	get_tree().change_scene_to_file("res://src/hud/levelselect.tscn") # <-- RUTA CORREGIDA
+	SaveManager.is_in_game_level = false

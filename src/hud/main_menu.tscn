@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://cb3bvghfex7nj"]
+
+[ext_resource type="Script" uid="uid://bkoyt8p2v70ob" path="res://src/hud/main_menu.gd" id="1_xpp54"]
+[ext_resource type="Texture2D" uid="uid://di22j4f5ru0hr" path="res://assets/hud/FONDOMAIN.jpg" id="2_x6pyu"]
+[ext_resource type="Texture2D" uid="uid://cntw17mptugqr" path="res://assets/hud/Gemini_Generated_Image_rqx9forqx9forqx9-removebg-preview (1).png" id="3_kqk7u"]
+[ext_resource type="Texture2D" uid="uid://bme4sbeo28xhw" path="res://assets/hud/jugar.jpg" id="4_kqk7u"]
+[ext_resource type="Texture2D" uid="uid://eouj2pyyl6ff" path="res://assets/hud/salir.jpg" id="5_elp1e"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_14qnn"]
+texture = ExtResource("4_kqk7u")
+modulate_color = Color(0.76662, 0.76662, 0.76662, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_elp1e"]
+texture = ExtResource("4_kqk7u")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2tdun"]
+texture = ExtResource("5_elp1e")
+modulate_color = Color(0.764706, 0.764706, 0.764706, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wls6m"]
+texture = ExtResource("5_elp1e")
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xpp54")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_x6pyu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(600, 175)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_kqk7u")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CenterContainer2" type="CenterContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="VBoxContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/hover = SubResource("StyleBoxTexture_14qnn")
+theme_override_styles/normal = SubResource("StyleBoxTexture_elp1e")
+
+[node name="ExitButton" type="Button" parent="VBoxContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/hover = SubResource("StyleBoxTexture_2tdun")
+theme_override_styles/normal = SubResource("StyleBoxTexture_wls6m")

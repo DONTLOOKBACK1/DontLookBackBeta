@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8lcut0bx8wic"]
+
+[ext_resource type="Script" uid="uid://dnkk0w25dxhss" path="res://src/hud/pause_menu.gd" id="1_gvf18"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+script = ExtResource("1_gvf18")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.32549)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "PAUSA"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "REANUDAR"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "SALIR AL MENU"
+
+[node name="ConfirmDialog" type="AcceptDialog" parent="."]
+title = "Confirmar salida"
+dialog_text = "Si sales ahora, se perderá todo el progreso de este nivel. ¿Estás seguro?"

@@ -3,7 +3,8 @@ extends CharacterBody2D
 # --- Estados de la IA ---
 enum State { PATROL, CHASE, ATTACK }
 var current_state = State.PATROL
-
+@onready var growl_sound = $GrowlSound
+@onready var growl_timer = $GrowlTimer
 # --- Variables ---
 @export var patrol_speed: float = 60.0
 @export var chase_speed: float = 120.0
@@ -12,6 +13,10 @@ var current_state = State.PATROL
 @export var attack_damage: int = 10
 @export var contact_damage: int = 5
 @export var health: int = 30
+
+# --- Variables de Gruñido (AÑADIDO) ---
+@export var min_growl_time: float = 4.0
+@export var max_growl_time: float = 10.0
 
 var direction: int = 1 # 1 para la derecha, -1 para la izquierda
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -30,11 +35,19 @@ var player = null
 
 
 func _ready():
+	# (AÑADIDO) Inicializa el generador de números aleatorios
+	randomize()
+	
 	detection_area.body_entered.connect(_on_detection_area_body_entered)
 	detection_area.body_exited.connect(_on_detection_area_body_exited)
 	attack_hitbox.body_entered.connect(_on_attack_hitbox_body_entered)
 	contact_hurtbox.body_entered.connect(_on_contact_hurtbox_body_entered)
 	animation_player.animation_finished.connect(_on_animation_finished)
+	
+	# --- Lógica del Gruñido (AÑADIDO) ---
+	# Le damos al timer su primer tiempo aleatorio
+	growl_timer.wait_time = randf_range(min_growl_time, max_growl_time)
+	# (Asegúrate de que 'Autostart' esté marcado en el Timer desde el editor)
 
 
 func _physics_process(delta: float):
@@ -52,7 +65,7 @@ func _physics_process(delta: float):
 	move_and_slide()
 
 # --- Lógica de Estados ---
-
+# ... (todas tus funciones patrol_logic, chase_logic, attack_logic no cambian) ...
 func patrol_logic():
 	if animation_player.current_animation != "run":
 		animation_player.play("run")
@@ -77,7 +90,6 @@ func chase_logic():
 		velocity.x = 0
 	else:
 		var new_direction = sign(direction_to_player.x)
-		# Si la dirección cambia, volteamos también los RayCasts
 		if new_direction != direction:
 			wall_detector.target_position.x *= -1
 			edge_detector.target_position.x *= -1
@@ -100,7 +112,7 @@ func attack_logic():
 		current_state = State.CHASE
 
 # --- Funciones de Señales y Métodos ---
-
+# ... (todas tus funciones de señales _on_... no cambian) ...
 func _on_detection_area_body_entered(body):
 	if body.is_in_group("player"):
 		player = body
@@ -137,7 +149,6 @@ func flip_direction():
 	direction *= -1
 	sprite.flip_h = not sprite.flip_h
 	pivot.scale.x *= -1
-	# Volteamos los RayCasts para que siempre apunten hacia adelante
 	wall_detector.target_position.x *= -1
 	edge_detector.target_position.x *= -1
 
@@ -146,3 +157,14 @@ func take_damage(amount: int):
 	print("Enemigo golpeado! Vida restante: ", health)
 	if health <= 0:
 		queue_free()
+
+# --- FUNCIÓN DE GRUÑIDO (MODIFICADA) ---
+func _on_growl_timer_timeout() -> void:
+	# 1. Reproduce el sonido de gruñido
+	growl_sound.play()
+	
+	# 2. Calcula un NUEVO tiempo de espera aleatorio
+	growl_timer.wait_time = randf_range(min_growl_time, max_growl_time)
+	
+	# 3. Reinicia el timer (asumiendo que está en modo "One-Shot")
+	growl_timer.start()
