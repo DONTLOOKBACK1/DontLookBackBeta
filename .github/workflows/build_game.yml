@@ -26,8 +26,8 @@ jobs:
           godot_executable_download_url: "https://downloads.tuxfamily.org/godotengine/4.5.1/Godot_v4.5.1-stable_win64.exe"
           godot_export_templates_download_url: "https://downloads.tuxfamily.org/godotengine/4.5.1/Godot_v4.5.1-stable_export_templates.tpz"
           relative_project_path: "./"
-          presets_to_export: "DONTLOOKBACK"   # Nombre exacto de tu preset
-          relative_export_path: "build/DONTLOOKBACK.exe"
+          presets_to_export: "Windows Desktop"   # Nombre exacto del preset
+          relative_export_path: "build/DONTLOOKBACK.exe"  # Nombre del .exe generado
           export_debug: false
 
       # Paso 3: Debug - listar contenido de build
