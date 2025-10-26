@@ -1,43 +1,57 @@
-.github/workflows/build_game.yml
+name: Build Godot Project
+
+on:
+  push:
+    branches:
+      - develop
+      - main
+  workflow_dispatch:
+
 jobs:
   build:
     name: Export Godot Project
-    runs-on: windows-latest   # Runner Windows
+    runs-on: windows-latest
 
     steps:
-      # Paso 1: Clonar el repo
+      # Paso 1: Clonar el repositorio
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           lfs: true
 
       # Paso 2: Exportar con Godot
-      - name: Export with Godot Export Action
+      - name: Export with Godot
         uses: firebelley/godot-export@v7.0.0
         with:
           godot-version: '4.5.1-stable'
-          export-presets: './export_presets.cfg'   # Ajusta según la ubicación real
+          export-presets: './export_presets.cfg'  # Ajusta según ubicación real
           preset: 'Windows Desktop'
           output-dir: 'build'
           export-path: 'build/DontLookBackBeta.exe'
           template-download: true
           debug: false
 
-      # Paso 3: Verificar build generado
+      # Paso 3: Debug - listar contenido de build
       - name: List build folder
-        run: dir build   # En Windows se usa 'dir' en lugar de 'ls'
+        run: |
+          echo "Contenido del directorio actual:"
+          dir
+          echo "Contenido de build:"
+          dir build
 
       # Paso 4: Crear zip del build y asegurarse de que exista
       - name: Create zip of build
         run: |
           echo "Creando carpeta artifacts..."
           mkdir artifacts
-          echo "Contenido de build:"
-          dir build
           echo "Comprimiendo build en artifacts/windows-build.zip"
-          powershell -Command "Compress-Archive -Path 'build/*' -DestinationPath 'artifacts/windows-build.zip' -Force"
+          powershell -Command "Compress-Archive -Path 'build\*' -DestinationPath 'artifacts\windows-build.zip' -Force"
 
-      # Paso 5: Subir artifact
+      # Paso 5: Verificar artifact
+      - name: Verify artifact file exists
+        run: dir artifacts
+
+      # Paso 6: Subir artifact
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
