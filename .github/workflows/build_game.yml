@@ -27,19 +27,17 @@ jobs:
       - name: List build folder
         run: dir build   # En Windows se usa 'dir' en lugar de 'ls'
 
-      # Paso 4: Crear carpeta artifacts (si no existe)
-      - name: Create artifacts folder
-        run: powershell New-Item -ItemType Directory -Force -Path artifacts
-
-      # Paso 5: Crear zip del build
+      # Paso 4: Crear zip del build y asegurarse de que exista
       - name: Create zip of build
-        run: powershell Compress-Archive -Path build\* -DestinationPath artifacts\windows-build.zip -Force
+        run: |
+          echo "Creando carpeta artifacts..."
+          mkdir artifacts
+          echo "Contenido de build:"
+          dir build
+          echo "Comprimiendo build en artifacts/windows-build.zip"
+          powershell -Command "Compress-Archive -Path 'build/*' -DestinationPath 'artifacts/windows-build.zip' -Force"
 
-      # Paso 6: Verificar que el zip se haya creado
-      - name: Verify artifact file exists
-        run: dir artifacts
-
-      # Paso 7: Subir artifact
+      # Paso 5: Subir artifact
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
