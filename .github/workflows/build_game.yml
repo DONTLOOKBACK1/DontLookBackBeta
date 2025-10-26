@@ -13,7 +13,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      # Paso 1: Clonar el repositorio
+      # Paso 1: Clonar el repo
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
@@ -24,7 +24,7 @@ jobs:
         uses: firebelley/godot-export@v7.0.0
         with:
           godot-version: '4.5.1-stable'
-          export-presets: './export_presets.cfg'  # Ajusta según ubicación real
+          export-presets: './export_presets.cfg'
           preset: 'Windows Desktop'
           output-dir: 'build'
           export-path: 'build/DontLookBackBeta.exe'
@@ -39,19 +39,17 @@ jobs:
           echo "Contenido de build:"
           dir build
 
-      # Paso 4: Crear zip del build y asegurarse de que exista
+      # Paso 4: Crear zip del build
       - name: Create zip of build
         run: |
           echo "Creando carpeta artifacts..."
           mkdir artifacts
           echo "Comprimiendo build en artifacts/windows-build.zip"
-          powershell -Command "Compress-Archive -Path 'build\*' -DestinationPath 'artifacts\windows-build.zip' -Force"
+          powershell -Command "Compress-Archive -Path 'build\*' -DestinationPath 'artifacts/windows-build.zip' -Force"
+          echo "Contenido de artifacts:"
+          dir artifacts
 
-      # Paso 5: Verificar artifact
-      - name: Verify artifact file exists
-        run: dir artifacts
-
-      # Paso 6: Subir artifact
+      # Paso 5: Subir artifact
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
