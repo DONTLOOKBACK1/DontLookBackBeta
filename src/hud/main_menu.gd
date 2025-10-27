@@ -4,6 +4,7 @@ extends Control
 # La ruta debe coincidir con tu árbol de escena.
 # CORRECTO:
 @onready var play_button = $VBoxContainer/CenterContainer/VBoxContainer/PlayButton
+@onready var config_button = $VBoxContainer/CenterContainer/VBoxContainer/ConfigButton
 @onready var exit_button = $VBoxContainer/CenterContainer/VBoxContainer/ExitButton
 
 func _ready():
@@ -13,6 +14,7 @@ func _ready():
 
 	# 2. Hacemos lo mismo para el botón de salir.
 	exit_button.pressed.connect(_on_exit_pressed)
+	config_button.pressed.connect(_on_config_pressed)
 
 # Esta función se ejecutará cuando se presione el botón "Jugar"
 func _on_play_pressed():
@@ -24,3 +26,6 @@ func _on_play_pressed():
 func _on_exit_pressed():
 	# Cierra el juego
 	get_tree().quit()
+
+func _on_config_pressed():
+	get_tree().change_scene_to_file("res://src/hud/config_menu.tscn")

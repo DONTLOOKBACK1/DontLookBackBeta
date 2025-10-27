@@ -28,5 +28,5 @@ func _on_menu_pressed():
 	get_tree().paused = false
 	queue_free()
 	
-	get_tree().change_scene_to_file("res://src/hud/levelselect.tscn") # <-- RUTA CORREGIDA
+	get_tree().change_scene_to_file("res://src/hud/level_select.tscn") # <-- RUTA CORREGIDA
 	SaveManager.is_in_game_level = false

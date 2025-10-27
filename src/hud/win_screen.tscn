@@ -37,7 +37,10 @@ action_mode = 0
 text = "Siguiente nivel"
 
 [node name="MenuButton" type="Button" parent="CenterContainer/VBoxContainer"]
+process_mode = 3
 layout_mode = 2
+action_mode = 0
 text = "Regresar al menu"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/NextLevelButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]

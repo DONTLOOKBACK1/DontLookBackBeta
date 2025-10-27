@@ -89,6 +89,7 @@ scale = Vector2(0.39146, 0.413152)
 collision_layer = 8
 script = ExtResource("1_h6ihb")
 attack_damage = 25
+contact_damage = 13
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -147,6 +148,7 @@ target_position = Vector2(28.8089, 46.9821)
 
 [node name="GrowlSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_df24r")
+bus = &"SFX"
 
 [node name="GrowlTimer" type="Timer" parent="."]
 one_shot = true

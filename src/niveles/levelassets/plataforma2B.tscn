@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckmyv1nqdt2ys"]
+
+[ext_resource type="Script" uid="uid://bep76834nriod" path="res://src/niveles/levelassets/plataforma_2b.gd" id="1_5gymi"]
+[ext_resource type="Texture2D" uid="uid://dxxr18bg6cs6g" path="res://assets/niveles/PLATAFORMA2B.png" id="1_8482b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_40pye"]
+size = Vector2(240, 16)
+
+[node name="PLATAFORMA2B" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_5gymi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.499992, -0.250002)
+scale = Vector2(0.455674, 0.533058)
+texture = ExtResource("1_8482b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 16)
+shape = SubResource("RectangleShape2D_40pye")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

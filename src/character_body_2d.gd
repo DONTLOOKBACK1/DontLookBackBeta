@@ -23,6 +23,7 @@ signal player_died # Señal para anunciar que el jugador ha muerto
 @export var wall_slide_gravity_multiplier: float = 0.5
 @export var max_wall_slide_speed: float = 150.0
 @export var wall_jump_velocity: Vector2 = Vector2(250.0, -450.0)
+@export var wall_crawl_speed: float = 100.0 # <-- NUEVO: Velocidad de trepado
 
 @export_group("Agacharse (Crouch)")
 @export var crouch_speed_multiplier: float = 0.5
@@ -62,9 +63,12 @@ func _ready():
 
 
 func _physics_process(delta: float):
-	apply_gravity(delta)
+	# MODIFICADO: Orden de llamadas
+	handle_wall_slide() # 1. Detecta si estamos en la pared
+	handle_wall_crawl(delta) # 2. NUEVO: Maneja el movimiento vertical en la pared
+	apply_gravity(delta) # 3. Aplica gravedad (si no estamos en pared o suelo)
+	
 	handle_attack()
-	handle_wall_slide()
 	handle_crouch()
 	handle_jump()
 	handle_horizontal_movement(delta)
@@ -83,11 +87,10 @@ func take_damage(amount: int):
 
 # --- GRAVEDAD ---
 func apply_gravity(delta: float):
-	if is_on_floor(): return
-	if is_wall_sliding:
-		velocity.y += gravity * wall_slide_gravity_multiplier * delta
-		velocity.y = min(velocity.y, max_wall_slide_speed)
-	elif velocity.y < 0 and not Input.is_action_pressed("ui_accept"):
+	# MODIFICADO: Añadimos "or is_wall_sliding"
+	if is_on_floor() or is_wall_sliding: return
+	
+	if velocity.y < 0 and not Input.is_action_pressed("ui_accept"):
 		velocity.y += gravity * jump_gravity_multiplier * delta
 	else:
 		velocity.y += gravity * delta
@@ -138,6 +141,24 @@ func handle_wall_slide():
 		if (wall_normal.x > 0 and direction < 0) or (wall_normal.x < 0 and direction > 0):
 			is_wall_sliding = true
 
+# --- NUEVA FUNCIÓN DE TREPADO ---
+func handle_wall_crawl(delta: float):
+	if not is_wall_sliding:
+		return # Si no estamos en la pared, no hacemos nada
+
+	# Capturamos el input vertical
+	var vertical_input = Input.get_axis("ui_up", "ui_down")
+	
+	if vertical_input != 0:
+		# El jugador está trepando (arriba o abajo)
+		velocity.y = vertical_input * wall_crawl_speed
+	else:
+		# El jugador está "agarrado" (Cling)
+		# Aplicamos un deslizamiento lento, al estilo Hollow Knight
+		# (Asegúrate de bajar wall_slide_gravity_multiplier y max_wall_slide_speed)
+		velocity.y += gravity * wall_slide_gravity_multiplier * delta
+		velocity.y = min(velocity.y, max_wall_slide_speed)
+
 # --- AGACHARSE ---
 func handle_crouch():
 	if is_attacking or _jump_initiated: return
@@ -175,9 +196,11 @@ func _perform_jump():
 
 # --- MOVIMIENTO HORIZONTAL ---
 func handle_horizontal_movement(delta: float):
-	if not wall_jump_timer.is_stopped() or is_attacking:
+	# MODIFICADO: Añadimos "or is_wall_sliding"
+	if not wall_jump_timer.is_stopped() or is_attacking or is_wall_sliding:
 		velocity.x = move_toward(velocity.x, 0, friction * delta)
 		return
+		
 	var direction = Input.get_axis("ui_left", "ui_right")
 	var current_speed = speed
 	if is_crouching:
@@ -202,7 +225,13 @@ func update_animation():
 	elif _jump_initiated:
 		new_animation = "jump"
 	elif is_wall_sliding:
-		new_animation = "wall_slide"
+		# MODIFICADO: Lógica para "crawl" vs "cling/slide"
+		var vertical_input = Input.get_axis("ui_up", "ui_down")
+		if vertical_input != 0:
+			new_animation = "wall_crawl" # (Necesitarás esta animación)
+		else:
+			new_animation = "wall_slide" # (Esta es tu animación de "cling")
+		
 		var wall_normal = get_wall_normal()
 		sprite.flip_h = wall_normal.x > 0
 		pivot.scale.x = -wall_normal.x

@@ -1,0 +1,264 @@
+[gd_scene load_steps=12 format=3 uid="uid://dacc6qs44qh1t"]
+
+[ext_resource type="Script" uid="uid://6eqy0s72m0tt" path="res://src/niveles/nivel_3.gd" id="1_ne3jc"]
+[ext_resource type="Texture2D" uid="uid://d2guyvweo0fxh" path="res://assets/niveles/Backgrounds/NIVEL3.png" id="2_ne3jc"]
+[ext_resource type="PackedScene" uid="uid://drp2jdsgpvscr" path="res://src/character_body_2d.tscn" id="5_20663"]
+[ext_resource type="PackedScene" uid="uid://c627ewgwmn6jt" path="res://src/npcs/mutante.tscn" id="5_ne3jc"]
+[ext_resource type="PackedScene" uid="uid://cpe3mvaq6tqko" path="res://src/hud/hud.tscn" id="6_567uh"]
+[ext_resource type="PackedScene" uid="uid://hofj61q8bm3q" path="res://src/hud/gameover.tscn" id="7_4p4mk"]
+[ext_resource type="PackedScene" uid="uid://cudl3bnsmx274" path="res://src/niveles/levelassets/GoalArea.tscn" id="8_2n2vg"]
+[ext_resource type="PackedScene" uid="uid://dvyipx320k27e" path="res://src/niveles/levelassets/tutorial.tscn" id="9_flfnj"]
+[ext_resource type="PackedScene" uid="uid://ius7g4dmtatu" path="res://src/niveles/levelassets/plataforma3.tscn" id="11_ne3jc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jnnpg"]
+size = Vector2(7952, 44)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7ov1"]
+size = Vector2(20, 394)
+
+[node name="Nivel3" type="Node2D"]
+script = ExtResource("1_ne3jc")
+
+[node name="Fondo1" type="Sprite2D" parent="."]
+position = Vector2(2984, 288)
+scale = Vector2(0.752243, 0.803421)
+texture = ExtResource("2_ne3jc")
+region_rect = Rect2(0, 207, 4365, 411)
+metadata/_edit_lock_ = true
+
+[node name="COLISIONES" type="StaticBody2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="COLISIONES"]
+position = Vector2(3976, 642)
+shape = SubResource("RectangleShape2D_jnnpg")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="COLISIONES"]
+position = Vector2(4064, -120)
+shape = SubResource("RectangleShape2D_jnnpg")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="COLISIONES"]
+position = Vector2(-8, 467)
+shape = SubResource("RectangleShape2D_m7ov1")
+
+[node name="PLATAFORMAS" type="Node2D" parent="."]
+
+[node name="PLATAFORMA2" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(528, 568)
+
+[node name="PLATAFORMA3" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(768, 495)
+
+[node name="PLATAFORMA4" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(1016, 440)
+
+[node name="PLATAFORMA5" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(1312, 400)
+
+[node name="PLATAFORMA11" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(1632, 408)
+
+[node name="PLATAFORMA17" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(1886, 542)
+
+[node name="PLATAFORMA13" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(2184, 175)
+scale = Vector2(1.04, 1)
+
+[node name="PLATAFORMA14" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(2304, 342)
+scale = Vector2(1.04, 1)
+
+[node name="PLATAFORMA18" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(2627, 378)
+scale = Vector2(1.04, 1)
+
+[node name="PLATAFORMA26" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(3120, 80)
+scale = Vector2(1.04, 1)
+
+[node name="PLATAFORMA27" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(3488, 132)
+scale = Vector2(1.32, 1)
+
+[node name="PLATAFORMA28" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(3596, 244)
+rotation = 1.5708
+scale = Vector2(1.32, 1)
+
+[node name="PLATAFORMA29" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(3704, 346)
+scale = Vector2(1.32, 1)
+
+[node name="PLATAFORMA31" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(4022, 510)
+scale = Vector2(1.32, 1)
+
+[node name="PLATAFORMA33" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(4320, 104)
+scale = Vector2(1.32, 1)
+
+[node name="PLATAFORMA38" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(4680, 144)
+scale = Vector2(0.921825, 0.83639)
+
+[node name="PLATAFORMA39" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(5024, 107)
+scale = Vector2(0.921825, 0.83639)
+
+[node name="PLATAFORMA41" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(5464, 560)
+scale = Vector2(0.921825, 0.83639)
+
+[node name="PLATAFORMA42" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(5680, 488)
+scale = Vector2(0.921825, 0.83639)
+
+[node name="PLATAFORMA43" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(5872, 408)
+scale = Vector2(0.921825, 0.83639)
+
+[node name="PLATAFORMA44" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(5616, 352)
+scale = Vector2(0.921825, 0.83639)
+
+[node name="PLATAFORMA34" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(4168, 274)
+scale = Vector2(1.76, 1)
+
+[node name="PLATAFORMA20" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(3112, 584)
+scale = Vector2(2.92199, 0.9)
+
+[node name="PLATAFORMA21" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(3048, 408)
+scale = Vector2(2.20199, 0.9)
+
+[node name="PLATAFORMA24" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(3248, 248)
+scale = Vector2(1.32199, 0.9)
+
+[node name="PLATAFORMA7" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(1312, 72)
+rotation = 1.5708
+scale = Vector2(1.76, 1)
+
+[node name="PLATAFORMA12" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("11_ne3jc")]
+position = Vector2(2080, 392)
+rotation = -1.5708
+scale = Vector2(2.49851, 1.16645)
+
+[node name="PLATAFORMA19" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("11_ne3jc")]
+position = Vector2(2544, 520)
+rotation = -1.5708
+scale = Vector2(1.69851, 1.16645)
+
+[node name="PLATAFORMA22" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("11_ne3jc")]
+position = Vector2(3376, 355)
+rotation = -1.5708
+scale = Vector2(2.57527, 1.16645)
+
+[node name="PLATAFORMA32" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("11_ne3jc")]
+position = Vector2(4432, 355)
+rotation = -1.5708
+scale = Vector2(2.79302, 1.16645)
+
+[node name="PLATAFORMA40" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("11_ne3jc")]
+position = Vector2(5336, 100)
+rotation = -1.5708
+scale = Vector2(2.79302, 1.16645)
+
+[node name="PLATAFORMA37" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("11_ne3jc")]
+position = Vector2(4928, 361)
+rotation = 1.5708
+scale = Vector2(2.79302, 1.16645)
+
+[node name="PLATAFORMA36" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(4680, 608)
+rotation = -3.14159
+scale = Vector2(2.79302, 1.16645)
+
+[node name="PLATAFORMA30" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("11_ne3jc")]
+position = Vector2(4024, 374)
+rotation = -1.5708
+scale = Vector2(1.25527, 1.16645)
+
+[node name="PLATAFORMA35" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("11_ne3jc")]
+position = Vector2(4022, 144)
+rotation = -4.71239
+scale = Vector2(1.25527, 1.16645)
+
+[node name="PLATAFORMA23" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("11_ne3jc")]
+position = Vector2(2856, 160)
+rotation = -1.5708
+scale = Vector2(2.74529, 1.16645)
+
+[node name="PLATAFORMA16" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(2408, 128)
+rotation = -4.71239
+scale = Vector2(2.49851, 1.16645)
+
+[node name="PLATAFORMA15" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(2216, 444)
+rotation = 1.5708
+scale = Vector2(1.13914, 1.16645)
+
+[node name="PLATAFORMA8" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(1312, 520)
+rotation = 1.5708
+scale = Vector2(1.2, 1)
+
+[node name="PLATAFORMA9" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(1630, 480)
+rotation = 1.5708
+scale = Vector2(0.700001, 1)
+
+[node name="PLATAFORMA10" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(1886, 616)
+rotation = 1.5708
+scale = Vector2(0.700001, 1)
+
+[node name="PLATAFORMA6" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
+position = Vector2(1312, 232)
+rotation = 3.14159
+
+[node name="PLATAFORMA25" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("11_ne3jc")]
+position = Vector2(3032, 160)
+rotation = -1.5708
+scale = Vector2(1.04, 1)
+
+[node name="mutante" parent="PLATAFORMAS" instance=ExtResource("5_ne3jc")]
+position = Vector2(1456, 552)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("5_20663")]
+position = Vector2(136, 564)
+scale = Vector2(0.851104, 0.941042)
+wall_jump_velocity = Vector2(-200, -450)
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+limit_left = 0
+limit_top = 0
+limit_right = 6040
+limit_bottom = 630
+
+[node name="HUD" parent="." instance=ExtResource("6_567uh")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameOverScreen" parent="CanvasLayer" instance=ExtResource("7_4p4mk")]
+visible = false
+
+[node name="GoalArea" parent="." instance=ExtResource("8_2n2vg")]
+position = Vector2(5614, 285)
+level_id = 3
+
+[node name="TUTORIALTEXTO" type="Node2D" parent="."]
+
+[node name="TUTORIAL" parent="TUTORIALTEXTO" instance=ExtResource("9_flfnj")]
+position = Vector2(1884, 523)
+mensaje_tutorial = "El acido quema"
+
+[node name="NPCS" type="Node" parent="."]
+
+[connection signal="health_updated" from="CharacterBody2D" to="HUD" method="_on_character_body_2d_health_updated"]
+[connection signal="player_died" from="CharacterBody2D" to="." method="_on_character_body_2d_player_died"]

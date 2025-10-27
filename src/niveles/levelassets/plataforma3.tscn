@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://ius7g4dmtatu"]
+
+[ext_resource type="Texture2D" uid="uid://cg1k0dhvwym16" path="res://assets/niveles/PLATAFORMA3.png" id="1_rkaic"]
+[ext_resource type="Script" uid="uid://cfd3mrfjibkds" path="res://src/niveles/levelassets/damage_area.gd" id="2_o5p7n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_40pye"]
+size = Vector2(189.813, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cna4q"]
+size = Vector2(180, 13)
+
+[node name="PLATAFORMA2" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+scale = Vector2(0.469378, 0.519481)
+texture = ExtResource("1_rkaic")
+
+[node name="SafeCollision" type="CollisionShape2D" parent="."]
+position = Vector2(-1.1875, -4.5)
+shape = SubResource("RectangleShape2D_40pye")
+
+[node name="DamageArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("2_o5p7n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+position = Vector2(-2, 12.5)
+shape = SubResource("RectangleShape2D_cna4q")
+
+[connection signal="body_entered" from="DamageArea" to="DamageArea" method="_on_body_entered"]

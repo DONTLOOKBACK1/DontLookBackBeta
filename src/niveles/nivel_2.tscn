@@ -1,15 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://db0h1a7uecurm"]
+[gd_scene load_steps=14 format=3 uid="uid://db0h1a7uecurm"]
 
-[ext_resource type="Script" uid="uid://chrc3mga8wmth" path="res://assets/niveles/nivel_1.gd" id="1_78j5g"]
-[ext_resource type="Texture2D" uid="uid://d4cq40hm5lppk" path="res://assets/niveles/Backgrounds/nivel2.png" id="2_78j5g"]
-[ext_resource type="PackedScene" uid="uid://drp2jdsgpvscr" path="res://assets/character_body_2d.tscn" id="3_2guim"]
+[ext_resource type="Script" uid="uid://co2p42fhautdq" path="res://src/niveles/nivel_2.gd" id="1_2guim"]
+[ext_resource type="Texture2D" uid="uid://bqahnfpxl0mm3" path="res://assets/niveles/Backgrounds/NIVEL2.2.png" id="2_u3ujj"]
+[ext_resource type="PackedScene" uid="uid://drp2jdsgpvscr" path="res://src/character_body_2d.tscn" id="3_2guim"]
 [ext_resource type="PackedScene" uid="uid://cpe3mvaq6tqko" path="res://src/hud/hud.tscn" id="4_s4f3k"]
-[ext_resource type="PackedScene" uid="uid://csb0n4owco5vu" path="res://src/niveles/levelassets/plataforma1.tscn" id="5_io4fh"]
+[ext_resource type="PackedScene" uid="uid://c5vmdveb3levi" path="res://src/niveles/levelassets/plataforma2.tscn" id="6_2guim"]
 [ext_resource type="PackedScene" uid="uid://hofj61q8bm3q" path="res://src/hud/gameover.tscn" id="6_jhheq"]
+[ext_resource type="PackedScene" uid="uid://ckmyv1nqdt2ys" path="res://src/niveles/levelassets/plataforma2B.tscn" id="7_2guim"]
 [ext_resource type="PackedScene" uid="uid://cudl3bnsmx274" path="res://src/niveles/levelassets/GoalArea.tscn" id="7_7kkjw"]
 [ext_resource type="PackedScene" uid="uid://dvyipx320k27e" path="res://src/niveles/levelassets/tutorial.tscn" id="8_7ucmu"]
-[ext_resource type="PackedScene" uid="uid://ijhvxyh78vpv" path="res://src/npcs/enemigos.tscn" id="9_uu52w"]
-[ext_resource type="PackedScene" uid="uid://ibwf1tht242t" path="res://src/npcs/heal_object.tscn" id="10_l0orm"]
+[ext_resource type="PackedScene" uid="uid://b0knqwc27x0u1" path="res://src/npcs/esqueleto.tscn" id="11_u3ujj"]
+[ext_resource type="PackedScene" uid="uid://cqalmgk4kovpr" path="res://src/niveles/levelassets/ChaseTrigger.tscn" id="12_2guim"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jnnpg"]
 size = Vector2(7952, 44)
@@ -18,13 +19,14 @@ size = Vector2(7952, 44)
 size = Vector2(20, 394)
 
 [node name="Nivel2" type="Node2D"]
-script = ExtResource("1_78j5g")
+script = ExtResource("1_2guim")
 
 [node name="Fondo1" type="Sprite2D" parent="."]
-position = Vector2(1483, 288)
-scale = Vector2(1.55773, 1.66371)
-texture = ExtResource("2_78j5g")
+position = Vector2(3008, 320)
+scale = Vector2(0.797475, 0.851731)
+texture = ExtResource("2_u3ujj")
 region_rect = Rect2(0, 207, 4365, 411)
+metadata/_edit_lock_ = true
 
 [node name="COLISIONES" type="StaticBody2D" parent="."]
 metadata/_edit_lock_ = true
@@ -33,9 +35,100 @@ metadata/_edit_lock_ = true
 position = Vector2(3976, 642)
 shape = SubResource("RectangleShape2D_jnnpg")
 
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="COLISIONES"]
+position = Vector2(4064, -80)
+shape = SubResource("RectangleShape2D_jnnpg")
+
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="COLISIONES"]
 position = Vector2(-8, 467)
 shape = SubResource("RectangleShape2D_m7ov1")
+
+[node name="PLATAFORMAS" type="Node2D" parent="."]
+
+[node name="PLATAFORMA2" parent="PLATAFORMAS" instance=ExtResource("6_2guim")]
+position = Vector2(492, 568)
+
+[node name="PLATAFORMA3" parent="PLATAFORMAS" instance=ExtResource("6_2guim")]
+position = Vector2(820, 480)
+
+[node name="PLATAFORMA4" parent="PLATAFORMAS" instance=ExtResource("6_2guim")]
+position = Vector2(444, 384)
+
+[node name="PLATAFORMA6" parent="PLATAFORMAS" instance=ExtResource("6_2guim")]
+position = Vector2(3352, 568)
+
+[node name="PLATAFORMA13" parent="PLATAFORMAS" instance=ExtResource("6_2guim")]
+position = Vector2(3688, 485)
+
+[node name="PLATAFORMA14" parent="PLATAFORMAS" instance=ExtResource("6_2guim")]
+position = Vector2(3352, 401)
+
+[node name="PLATAFORMA16" parent="PLATAFORMAS" instance=ExtResource("6_2guim")]
+position = Vector2(3352, 232)
+
+[node name="PLATAFORMA17" parent="PLATAFORMAS" instance=ExtResource("6_2guim")]
+position = Vector2(3688, 160)
+
+[node name="PLATAFORMA15" parent="PLATAFORMAS" instance=ExtResource("6_2guim")]
+position = Vector2(3688, 320)
+
+[node name="PLATAFORMA5" parent="PLATAFORMAS" instance=ExtResource("6_2guim")]
+position = Vector2(988, 320)
+scale = Vector2(2.04, 1)
+
+[node name="PLATAFORMA7" parent="PLATAFORMAS" instance=ExtResource("6_2guim")]
+position = Vector2(1626, 392)
+
+[node name="PLATAFORMA9" parent="PLATAFORMAS" instance=ExtResource("6_2guim")]
+position = Vector2(2016, 408)
+
+[node name="PLATAFORMA10" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("6_2guim")]
+position = Vector2(2656, 408)
+rotation = -1.57079
+scale = Vector2(1.96, 1.72001)
+
+[node name="PLATAFORMA8" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("6_2guim")]
+position = Vector2(2128, 513)
+rotation = 1.57079
+
+[node name="PLATAFORMA11" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("6_2guim")]
+position = Vector2(2432, 272)
+rotation = 1.57079
+scale = Vector2(2.2, 1.72001)
+
+[node name="PLATAFORMA12" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("6_2guim")]
+position = Vector2(3912, 411)
+rotation = 1.57079
+scale = Vector2(2.2, 1.72001)
+
+[node name="PLATAFORMA2B" parent="PLATAFORMAS" instance=ExtResource("7_2guim")]
+position = Vector2(444, 408)
+
+[node name="PLATAFORMA2B4" parent="PLATAFORMAS" instance=ExtResource("7_2guim")]
+position = Vector2(2103, 522)
+rotation = 1.57079
+
+[node name="PLATAFORMA2B3" parent="PLATAFORMAS" instance=ExtResource("7_2guim")]
+position = Vector2(2008, 424)
+
+[node name="PLATAFORMA2B5" parent="PLATAFORMAS" instance=ExtResource("7_2guim")]
+position = Vector2(2432, 296)
+rotation = 1.57079
+scale = Vector2(2.11016, 1.28757)
+
+[node name="PLATAFORMA2B6" parent="PLATAFORMAS" instance=ExtResource("7_2guim")]
+position = Vector2(3904, 401)
+rotation = 1.57079
+scale = Vector2(2.11016, 1.28757)
+
+[node name="PLATAFORMA2B7" parent="PLATAFORMAS" instance=ExtResource("7_2guim")]
+position = Vector2(3947, 401)
+rotation = 4.71238
+scale = Vector2(2.11016, 1.28757)
+
+[node name="PLATAFORMA2B2" parent="PLATAFORMAS" instance=ExtResource("7_2guim")]
+position = Vector2(988, 328)
+scale = Vector2(2.04, 0.48)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_2guim")]
 position = Vector2(112, 555)
@@ -44,37 +137,10 @@ scale = Vector2(0.851104, 0.941042)
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 limit_left = 0
 limit_top = 0
-limit_right = 6912
+limit_right = 6040
 limit_bottom = 630
 
 [node name="HUD" parent="." instance=ExtResource("4_s4f3k")]
-
-[node name="PLATAFORMAS" type="Node2D" parent="."]
-
-[node name="StaticBody2D7" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("5_io4fh")]
-position = Vector2(2128, 360)
-rotation = -1.57079
-scale = Vector2(2.03324, 1.00005)
-
-[node name="StaticBody2D8" parent="PLATAFORMAS" instance=ExtResource("5_io4fh")]
-position = Vector2(3656, 264)
-rotation = -1.57079
-scale = Vector2(2.03324, 1.00005)
-
-[node name="StaticBody2D5" parent="PLATAFORMAS" instance=ExtResource("5_io4fh")]
-position = Vector2(1800, 256)
-rotation = -1.57079
-scale = Vector2(2.23324, 1.00005)
-
-[node name="StaticBody2D4" parent="PLATAFORMAS" instance=ExtResource("5_io4fh")]
-position = Vector2(1152, 392)
-
-[node name="StaticBody2D3" parent="PLATAFORMAS" instance=ExtResource("5_io4fh")]
-position = Vector2(872, 480)
-
-[node name="StaticBody2D2" parent="PLATAFORMAS" instance=ExtResource("5_io4fh")]
-position = Vector2(592, 608)
-scale = Vector2(1, 2.48)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -83,48 +149,33 @@ visible = false
 
 [node name="GoalArea" parent="." instance=ExtResource("7_7kkjw")]
 position = Vector2(5616, 576)
+level_id = 2
 
 [node name="TUTORIALTEXTO" type="Node2D" parent="."]
 
 [node name="TUTORIAL" parent="TUTORIALTEXTO" instance=ExtResource("8_7ucmu")]
-position = Vector2(192, 560)
-mensaje_tutorial = "Tu eres Akira Utiliza las flechas para moverte y espacio para saltar"
+position = Vector2(192, 624)
+mensaje_tutorial = "Cuidado con los picos"
 
 [node name="TUTORIAL2" parent="TUTORIALTEXTO" instance=ExtResource("8_7ucmu")]
-position = Vector2(1152, 328)
-mensaje_tutorial = "Tranquilo, no te romperas las piernas"
+position = Vector2(2877, 624)
+mensaje_tutorial = "¡CORRE!"
 
 [node name="TUTORIAL3" parent="TUTORIALTEXTO" instance=ExtResource("8_7ucmu")]
-position = Vector2(1592, 616)
-mensaje_tutorial = "Pulsa \"c\" para agacharte"
-
-[node name="TUTORIAL4" parent="TUTORIALTEXTO" instance=ExtResource("8_7ucmu")]
-position = Vector2(1960, 616)
-mensaje_tutorial = "El parkour siempre es una opcion algunas paredes son escalables"
-
-[node name="TUTORIAL5" parent="TUTORIALTEXTO" instance=ExtResource("8_7ucmu")]
-position = Vector2(2312, 616)
-mensaje_tutorial = "¡CUIDADO! Presiona \"x\" para atacar, no te dejes golpear ni te acerques mucho"
-
-[node name="TUTORIAL6" parent="TUTORIALTEXTO" instance=ExtResource("8_7ucmu")]
-position = Vector2(4048, 592)
-mensaje_tutorial = "Tal vez no recuerdes mucho, pero tienes que continuar Akira"
-
-[node name="TUTORIAL7" parent="TUTORIALTEXTO" instance=ExtResource("8_7ucmu")]
-position = Vector2(4872, 592)
-mensaje_tutorial = "Sigue hasta la meta"
-
-[node name="TUTORIAL8" parent="TUTORIALTEXTO" instance=ExtResource("8_7ucmu")]
-position = Vector2(3144, 616)
-mensaje_tutorial = "Toma, no siempre saldras bien librado de las peleas"
+position = Vector2(4784, 624)
+mensaje_tutorial = "Eso estuvo cerca"
 
 [node name="NPCS" type="Node" parent="."]
 
-[node name="ENEMIGOS" parent="NPCS" instance=ExtResource("9_uu52w")]
-position = Vector2(3305, 368)
+[node name="ChaseTrigger" parent="NPCS" instance=ExtResource("12_2guim")]
+position = Vector2(2877, 488)
 
-[node name="HealObject" parent="NPCS" instance=ExtResource("10_l0orm")]
-position = Vector2(3480, 572)
+[node name="ChaseTrigger2" parent="NPCS" instance=ExtResource("12_2guim")]
+position = Vector2(4784, 478)
+mode = 1
+
+[node name="esqueleto" parent="NPCS" instance=ExtResource("11_u3ujj")]
+position = Vector2(1376, 520)
 
 [connection signal="health_updated" from="CharacterBody2D" to="HUD" method="_on_character_body_2d_health_updated"]
 [connection signal="player_died" from="CharacterBody2D" to="." method="_on_character_body_2d_player_died"]

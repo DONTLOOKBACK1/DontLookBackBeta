@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqalmgk4kovpr"]
+
+[ext_resource type="Script" uid="uid://d0tpf4i1qumyt" path="res://src/niveles/levelassets/chase_trigger.gd" id="1_ldquo"]
+[ext_resource type="PackedScene" uid="uid://cntdqa72p7ut6" path="res://src/npcs/sombra.tscn" id="2_pol72"]
+[ext_resource type="AudioStream" uid="uid://ckhxu7qvwlm3u" path="res://assets/music/PERSECUCION.mp3" id="3_pol72"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xgs6s"]
+
+[node name="ChaseTrigger" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_ldquo")
+shadow_scene = ExtResource("2_pol72")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(14.5, 14.5)
+shape = SubResource("RectangleShape2D_xgs6s")
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(-672, -248)
+
+[node name="ChaseMusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_pol72")

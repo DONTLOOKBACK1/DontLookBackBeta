@@ -9,3 +9,4 @@ script = ExtResource("1_jsikq")
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_am45m")
 autoplay = true
+bus = &"Music"

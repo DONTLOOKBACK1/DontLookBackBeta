@@ -19,6 +19,7 @@ config/icon="uid://heod31wy7ox3"
 
 SaveManager="*res://src/saves/SaveManager.gd"
 MusicManager="*res://src/saves/MusicManager.tscn"
+AudioManager="*res://src/saves/AudioManager.gd"
 
 [display]
 
