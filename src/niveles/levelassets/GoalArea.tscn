@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cudl3bnsmx274"]
 
-[ext_resource type="Script" uid="uid://bshfayuuik3de" path="res://area_2d.gd" id="1_tq6rg"]
+[ext_resource type="Script" uid="uid://bshfayuuik3de" path="res://src/niveles/levelassets/area_2d.gd" id="1_tq6rg"]
 [ext_resource type="Texture2D" uid="uid://bmw40bxxltuck" path="res://assets/niveles/pixellab-rezise-this-image-1760396247088 (1).png" id="2_d4l0f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tq6rg"]

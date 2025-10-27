@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cntdqa72p7ut6"]
 
-[ext_resource type="Script" uid="uid://dagt5hl4v1ll7" path="res://sombra.gd" id="1_obpix"]
+[ext_resource type="Script" uid="uid://dagt5hl4v1ll7" path="res://src/npcs/sombra.gd" id="1_obpix"]
 [ext_resource type="Texture2D" uid="uid://cxpkpdhdd5pov" path="res://assets/enemys/Sprite sombra.png" id="2_qtjf6"]
 
 [sub_resource type="Animation" id="Animation_1ukib"]

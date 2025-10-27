@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://ijhvxyh78vpv"]
 
-[ext_resource type="Script" uid="uid://dmeamwjpfaafp" path="res://enemigos.gd" id="1_h6ihb"]
+[ext_resource type="Script" uid="uid://dmeamwjpfaafp" path="res://src/npcs/enemigos.gd" id="1_h6ihb"]
 [ext_resource type="Texture2D" uid="uid://x32ky6w15y7k" path="res://assets/enemys/Sprite enemigo1.png" id="2_uap5i"]
 [ext_resource type="AudioStream" uid="uid://b5vt66dm8478c" path="res://assets/effects/sonido monstruo recortado.mp3" id="3_df24r"]
 
