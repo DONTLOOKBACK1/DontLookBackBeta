@@ -1,0 +1,164 @@
+[gd_scene load_steps=13 format=3 uid="uid://3xf26lbh2jj2"]
+
+[ext_resource type="Script" uid="uid://cdwrpf67pq3o5" path="res://src/niveles/nivel_4.gd" id="1_87ps2"]
+[ext_resource type="Texture2D" uid="uid://5ndn1kkwaibe" path="res://assets/niveles/Backgrounds/Imagen2.png" id="2_wyjco"]
+[ext_resource type="PackedScene" uid="uid://cifxrlnxfs7q2" path="res://src/niveles/levelassets/death_zone.tscn" id="3_wyjco"]
+[ext_resource type="PackedScene" uid="uid://drp2jdsgpvscr" path="res://src/character_body_2d.tscn" id="5_n6bwq"]
+[ext_resource type="PackedScene" uid="uid://cpe3mvaq6tqko" path="res://src/hud/hud.tscn" id="6_gybyy"]
+[ext_resource type="PackedScene" uid="uid://hofj61q8bm3q" path="res://src/hud/gameover.tscn" id="7_gfkqq"]
+[ext_resource type="PackedScene" uid="uid://cudl3bnsmx274" path="res://src/niveles/levelassets/GoalArea.tscn" id="8_e12i4"]
+[ext_resource type="PackedScene" uid="uid://b8o7bwgfm60wu" path="res://src/niveles/levelassets/plataforma4.tscn" id="8_kbn2m"]
+[ext_resource type="PackedScene" uid="uid://dvyipx320k27e" path="res://src/niveles/levelassets/tutorial.tscn" id="9_53eux"]
+[ext_resource type="PackedScene" uid="uid://cqalmgk4kovpr" path="res://src/niveles/levelassets/ChaseTrigger.tscn" id="9_kbn2m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jnnpg"]
+size = Vector2(7952, 44)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7ov1"]
+size = Vector2(20, 394)
+
+[node name="Nivel4" type="Node2D"]
+script = ExtResource("1_87ps2")
+
+[node name="Fondo1" type="Sprite2D" parent="."]
+position = Vector2(2761, 229)
+scale = Vector2(0.752243, 0.803421)
+texture = ExtResource("2_wyjco")
+region_rect = Rect2(0, 207, 4365, 411)
+
+[node name="COLISIONES" type="StaticBody2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="COLISIONES"]
+position = Vector2(3976, 642)
+shape = SubResource("RectangleShape2D_jnnpg")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="COLISIONES"]
+position = Vector2(4064, -120)
+shape = SubResource("RectangleShape2D_jnnpg")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="COLISIONES"]
+position = Vector2(-8, 467)
+shape = SubResource("RectangleShape2D_m7ov1")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="COLISIONES"]
+position = Vector2(5976, 444)
+shape = SubResource("RectangleShape2D_m7ov1")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("5_n6bwq")]
+position = Vector2(464, 432)
+scale = Vector2(0.851104, 0.941042)
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+limit_left = 0
+limit_top = -50
+limit_right = 5966
+limit_bottom = 630
+
+[node name="HUD" parent="." instance=ExtResource("6_gybyy")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameOverScreen" parent="CanvasLayer" instance=ExtResource("7_gfkqq")]
+visible = false
+
+[node name="GoalArea" parent="." instance=ExtResource("8_e12i4")]
+position = Vector2(5088, 184)
+level_id = 4
+
+[node name="TUTORIALTEXTO" type="Node2D" parent="."]
+
+[node name="TUTORIAL" parent="TUTORIALTEXTO" instance=ExtResource("9_53eux")]
+position = Vector2(936, 392)
+mensaje_tutorial = "Aqui no hay suelo, mejor no te caigas"
+
+[node name="TUTORIAL2" parent="TUTORIALTEXTO" instance=ExtResource("9_53eux")]
+position = Vector2(4503, 398)
+mensaje_tutorial = "Aqui fue donde comenzo"
+
+[node name="NPCS" type="Node" parent="."]
+
+[node name="PLATAFORMAS" type="Node2D" parent="."]
+
+[node name="PLATAFORMA2" parent="PLATAFORMAS" instance=ExtResource("8_kbn2m")]
+position = Vector2(480, 544)
+scale = Vector2(2.48669, 2.48669)
+
+[node name="PLATAFORMA3" parent="PLATAFORMAS" instance=ExtResource("8_kbn2m")]
+position = Vector2(480, 80)
+scale = Vector2(2.48669, 2.48669)
+
+[node name="PLATAFORMA4" parent="PLATAFORMAS" instance=ExtResource("8_kbn2m")]
+position = Vector2(936, 444)
+scale = Vector2(2.48669, 2.48669)
+
+[node name="PLATAFORMA5" parent="PLATAFORMAS" instance=ExtResource("8_kbn2m")]
+position = Vector2(936, 168)
+scale = Vector2(2.48669, 2.48669)
+
+[node name="PLATAFORMA6" parent="PLATAFORMAS" instance=ExtResource("8_kbn2m")]
+position = Vector2(1472, 536)
+scale = Vector2(2.48669, 2.48669)
+
+[node name="PLATAFORMA10" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("8_kbn2m")]
+position = Vector2(2680, 312)
+rotation = -1.57079
+scale = Vector2(2.48669, 2.48669)
+
+[node name="PLATAFORMA12" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("8_kbn2m")]
+position = Vector2(3200, 296)
+rotation = -1.57079
+scale = Vector2(2.48669, 2.48669)
+
+[node name="PLATAFORMA18" parent="PLATAFORMAS" instance=ExtResource("8_kbn2m")]
+position = Vector2(5152, 292)
+scale = Vector2(2.48669, 2.48669)
+
+[node name="PLATAFORMA13" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("8_kbn2m")]
+position = Vector2(3536, 304)
+rotation = -1.57079
+scale = Vector2(2.48669, 2.48669)
+
+[node name="PLATAFORMA14" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("8_kbn2m")]
+position = Vector2(3856, 408)
+rotation = -1.57079
+scale = Vector2(2.48669, 2.48669)
+
+[node name="PLATAFORMA17" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("8_kbn2m")]
+position = Vector2(4961.95, 391.46)
+rotation = -1.57079
+scale = Vector2(2.48669, 2.48669)
+
+[node name="PLATAFORMA7" parent="PLATAFORMAS" instance=ExtResource("8_kbn2m")]
+position = Vector2(1896, 448)
+scale = Vector2(2.48669, 2.48669)
+
+[node name="PLATAFORMA9" parent="PLATAFORMAS" instance=ExtResource("8_kbn2m")]
+position = Vector2(2520, 488)
+scale = Vector2(2.48669, 2.48669)
+
+[node name="PLATAFORMA11" parent="PLATAFORMAS" instance=ExtResource("8_kbn2m")]
+position = Vector2(3048, 512)
+scale = Vector2(2.48669, 2.48669)
+
+[node name="PLATAFORMA15" parent="PLATAFORMAS" instance=ExtResource("8_kbn2m")]
+position = Vector2(3979.61, 308.347)
+scale = Vector2(2.48669, 2.48669)
+
+[node name="PLATAFORMA16" parent="PLATAFORMAS" instance=ExtResource("8_kbn2m")]
+position = Vector2(4504, 456)
+scale = Vector2(2.48669, 2.48669)
+
+[node name="PLATAFORMA8" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("8_kbn2m")]
+position = Vector2(2081, 328)
+rotation = -1.57079
+scale = Vector2(2.48669, 2.48669)
+
+[node name="ChaseTrigger" parent="PLATAFORMAS" instance=ExtResource("9_kbn2m")]
+position = Vector2(1472, 361)
+
+[node name="DeathZone" parent="." instance=ExtResource("3_wyjco")]
+position = Vector2(5800, 560)
+
+[connection signal="health_updated" from="CharacterBody2D" to="HUD" method="_on_character_body_2d_health_updated"]
+[connection signal="player_died" from="CharacterBody2D" to="." method="_on_character_body_2d_player_died"]

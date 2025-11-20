@@ -1,0 +1,101 @@
+[gd_scene load_steps=11 format=3 uid="uid://j0rkjhm48pi3"]
+
+[ext_resource type="Script" uid="uid://c802uvsadqcri" path="res://src/niveles/nivel_8.gd" id="1_x2mld"]
+[ext_resource type="Texture2D" uid="uid://dfejronf8ck8e" path="res://assets/niveles/Backgrounds/Imagen5.png" id="2_x6t7q"]
+[ext_resource type="PackedScene" uid="uid://drp2jdsgpvscr" path="res://src/character_body_2d.tscn" id="3_xra4e"]
+[ext_resource type="PackedScene" uid="uid://cpe3mvaq6tqko" path="res://src/hud/hud.tscn" id="4_o7l1w"]
+[ext_resource type="PackedScene" uid="uid://hofj61q8bm3q" path="res://src/hud/gameover.tscn" id="6_hu6jc"]
+[ext_resource type="PackedScene" uid="uid://cudl3bnsmx274" path="res://src/niveles/levelassets/GoalArea.tscn" id="7_v1xq2"]
+[ext_resource type="PackedScene" uid="uid://c3rgjq68ptgur" path="res://src/niveles/levelassets/plataforma8.tscn" id="8_2727w"]
+[ext_resource type="PackedScene" uid="uid://dvyipx320k27e" path="res://src/niveles/levelassets/tutorial.tscn" id="8_qarv7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jnnpg"]
+size = Vector2(7952, 44)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7ov1"]
+size = Vector2(20, 394)
+
+[node name="Nivel8" type="Node2D"]
+script = ExtResource("1_x2mld")
+
+[node name="Fondo1" type="Sprite2D" parent="."]
+position = Vector2(3400.25, 333.574)
+scale = Vector2(-1.558, 1.664)
+texture = ExtResource("2_x6t7q")
+region_rect = Rect2(0, 207, 4365, 411)
+
+[node name="COLISIONES" type="StaticBody2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="COLISIONES"]
+position = Vector2(3976, 642)
+shape = SubResource("RectangleShape2D_jnnpg")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="COLISIONES"]
+position = Vector2(-8, 467)
+shape = SubResource("RectangleShape2D_m7ov1")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("3_xra4e")]
+position = Vector2(112, 555)
+scale = Vector2(0.851104, 0.941042)
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+limit_left = 0
+limit_top = 0
+limit_right = 6912
+limit_bottom = 630
+
+[node name="HUD" parent="." instance=ExtResource("4_o7l1w")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameOverScreen" parent="CanvasLayer" instance=ExtResource("6_hu6jc")]
+visible = false
+
+[node name="GoalArea" parent="." instance=ExtResource("7_v1xq2")]
+position = Vector2(5939, 520)
+rotation = -0.523598
+level_id = 8
+
+[node name="TUTORIALTEXTO" type="Node2D" parent="."]
+
+[node name="TUTORIAL" parent="TUTORIALTEXTO" instance=ExtResource("8_qarv7")]
+position = Vector2(473, 616)
+mensaje_tutorial = "¿Aqui otra vez?"
+
+[node name="TUTORIAL4" parent="TUTORIALTEXTO" instance=ExtResource("8_qarv7")]
+position = Vector2(1043, 616)
+mensaje_tutorial = "Parece que el refugio no estaba tan lejos"
+
+[node name="TUTORIAL5" parent="TUTORIALTEXTO" instance=ExtResource("8_qarv7")]
+position = Vector2(1722, 616)
+mensaje_tutorial = "Es gracioso sabes, todo este viaje para terminar aqui de nuevo"
+
+[node name="TUTORIAL6" parent="TUTORIALTEXTO" instance=ExtResource("8_qarv7")]
+position = Vector2(5628, 616)
+mensaje_tutorial = "Quiza si debiste mirar atrás"
+
+[node name="TUTORIAL7" parent="TUTORIALTEXTO" instance=ExtResource("8_qarv7")]
+position = Vector2(5269, 616)
+mensaje_tutorial = "No puede ser..."
+
+[node name="TUTORIAL8" parent="TUTORIALTEXTO" instance=ExtResource("8_qarv7")]
+position = Vector2(2625, 616)
+mensaje_tutorial = "El refugio, ¿Crees que siga en pie?"
+
+[node name="TUTORIAL9" parent="TUTORIALTEXTO" instance=ExtResource("8_qarv7")]
+position = Vector2(3294, 616)
+mensaje_tutorial = "Espero y respondan tus preguntas"
+
+[node name="TUTORIAL10" parent="TUTORIALTEXTO" instance=ExtResource("8_qarv7")]
+position = Vector2(4179, 616)
+mensaje_tutorial = "El porque de este mundo tan retorcido"
+
+[node name="NPCS" type="Node" parent="."]
+
+[node name="StaticBody2D" parent="." instance=ExtResource("8_2727w")]
+position = Vector2(6399, 468)
+scale = Vector2(1.44, 1.44)
+
+[connection signal="health_updated" from="CharacterBody2D" to="HUD" method="_on_character_body_2d_health_updated"]
+[connection signal="player_died" from="CharacterBody2D" to="." method="_on_character_body_2d_player_died"]

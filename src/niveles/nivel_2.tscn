@@ -1,0 +1,185 @@
+[gd_scene load_steps=15 format=3 uid="uid://db0h1a7uecurm"]
+
+[ext_resource type="Script" uid="uid://co2p42fhautdq" path="res://src/niveles/nivel_2.gd" id="1_2guim"]
+[ext_resource type="Texture2D" uid="uid://bqahnfpxl0mm3" path="res://assets/niveles/Backgrounds/NIVEL2.2.png" id="2_u3ujj"]
+[ext_resource type="PackedScene" uid="uid://drp2jdsgpvscr" path="res://src/character_body_2d.tscn" id="3_2guim"]
+[ext_resource type="PackedScene" uid="uid://cpe3mvaq6tqko" path="res://src/hud/hud.tscn" id="4_s4f3k"]
+[ext_resource type="PackedScene" uid="uid://c5vmdveb3levi" path="res://src/niveles/levelassets/plataforma2.tscn" id="6_2guim"]
+[ext_resource type="PackedScene" uid="uid://hofj61q8bm3q" path="res://src/hud/gameover.tscn" id="6_jhheq"]
+[ext_resource type="PackedScene" uid="uid://ckmyv1nqdt2ys" path="res://src/niveles/levelassets/plataforma2B.tscn" id="7_2guim"]
+[ext_resource type="PackedScene" uid="uid://cudl3bnsmx274" path="res://src/niveles/levelassets/GoalArea.tscn" id="7_7kkjw"]
+[ext_resource type="PackedScene" uid="uid://dvyipx320k27e" path="res://src/niveles/levelassets/tutorial.tscn" id="8_7ucmu"]
+[ext_resource type="PackedScene" uid="uid://b0knqwc27x0u1" path="res://src/npcs/esqueleto.tscn" id="11_u3ujj"]
+[ext_resource type="PackedScene" uid="uid://cqalmgk4kovpr" path="res://src/niveles/levelassets/ChaseTrigger.tscn" id="12_2guim"]
+[ext_resource type="PackedScene" uid="uid://ibwf1tht242t" path="res://src/npcs/heal_object.tscn" id="12_s4f3k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jnnpg"]
+size = Vector2(7952, 44)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7ov1"]
+size = Vector2(20, 394)
+
+[node name="Nivel2" type="Node2D"]
+script = ExtResource("1_2guim")
+
+[node name="Fondo1" type="Sprite2D" parent="."]
+position = Vector2(3008, 320)
+scale = Vector2(0.797475, 0.851731)
+texture = ExtResource("2_u3ujj")
+region_rect = Rect2(0, 207, 4365, 411)
+metadata/_edit_lock_ = true
+
+[node name="COLISIONES" type="StaticBody2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="COLISIONES"]
+position = Vector2(3976, 642)
+shape = SubResource("RectangleShape2D_jnnpg")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="COLISIONES"]
+position = Vector2(4064, -80)
+shape = SubResource("RectangleShape2D_jnnpg")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="COLISIONES"]
+position = Vector2(-8, 467)
+shape = SubResource("RectangleShape2D_m7ov1")
+
+[node name="PLATAFORMAS" type="Node2D" parent="."]
+
+[node name="PLATAFORMA2" parent="PLATAFORMAS" instance=ExtResource("6_2guim")]
+position = Vector2(492, 568)
+
+[node name="PLATAFORMA3" parent="PLATAFORMAS" instance=ExtResource("6_2guim")]
+position = Vector2(820, 480)
+
+[node name="PLATAFORMA4" parent="PLATAFORMAS" instance=ExtResource("6_2guim")]
+position = Vector2(444, 384)
+
+[node name="PLATAFORMA6" parent="PLATAFORMAS" instance=ExtResource("6_2guim")]
+position = Vector2(3352, 568)
+
+[node name="PLATAFORMA13" parent="PLATAFORMAS" instance=ExtResource("6_2guim")]
+position = Vector2(3688, 485)
+
+[node name="PLATAFORMA14" parent="PLATAFORMAS" instance=ExtResource("6_2guim")]
+position = Vector2(3352, 401)
+
+[node name="PLATAFORMA16" parent="PLATAFORMAS" instance=ExtResource("6_2guim")]
+position = Vector2(3352, 232)
+
+[node name="PLATAFORMA17" parent="PLATAFORMAS" instance=ExtResource("6_2guim")]
+position = Vector2(3688, 160)
+
+[node name="PLATAFORMA15" parent="PLATAFORMAS" instance=ExtResource("6_2guim")]
+position = Vector2(3688, 320)
+
+[node name="PLATAFORMA5" parent="PLATAFORMAS" instance=ExtResource("6_2guim")]
+position = Vector2(988, 320)
+scale = Vector2(2.04, 1)
+
+[node name="PLATAFORMA7" parent="PLATAFORMAS" instance=ExtResource("6_2guim")]
+position = Vector2(1626, 392)
+
+[node name="PLATAFORMA9" parent="PLATAFORMAS" instance=ExtResource("6_2guim")]
+position = Vector2(2016, 408)
+
+[node name="PLATAFORMA10" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("6_2guim")]
+position = Vector2(2656, 408)
+rotation = -1.57079
+scale = Vector2(1.96, 1.72001)
+
+[node name="PLATAFORMA8" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("6_2guim")]
+position = Vector2(2128, 513)
+rotation = 1.57079
+
+[node name="PLATAFORMA11" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("6_2guim")]
+position = Vector2(2432, 272)
+rotation = 1.57079
+scale = Vector2(2.2, 1.72001)
+
+[node name="PLATAFORMA12" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("6_2guim")]
+position = Vector2(3912, 411)
+rotation = 1.57079
+scale = Vector2(2.2, 1.72001)
+
+[node name="PLATAFORMA2B" parent="PLATAFORMAS" instance=ExtResource("7_2guim")]
+position = Vector2(444, 408)
+
+[node name="PLATAFORMA2B4" parent="PLATAFORMAS" instance=ExtResource("7_2guim")]
+position = Vector2(2103, 522)
+rotation = 1.57079
+
+[node name="PLATAFORMA2B3" parent="PLATAFORMAS" instance=ExtResource("7_2guim")]
+position = Vector2(2008, 424)
+
+[node name="PLATAFORMA2B5" parent="PLATAFORMAS" instance=ExtResource("7_2guim")]
+position = Vector2(2432, 296)
+rotation = 1.57079
+scale = Vector2(2.11016, 1.28757)
+
+[node name="PLATAFORMA2B6" parent="PLATAFORMAS" instance=ExtResource("7_2guim")]
+position = Vector2(3904, 401)
+rotation = 1.57079
+scale = Vector2(2.11016, 1.28757)
+
+[node name="PLATAFORMA2B7" parent="PLATAFORMAS" instance=ExtResource("7_2guim")]
+position = Vector2(3947, 401)
+rotation = 4.71238
+scale = Vector2(2.11016, 1.28757)
+
+[node name="PLATAFORMA2B2" parent="PLATAFORMAS" instance=ExtResource("7_2guim")]
+position = Vector2(988, 328)
+scale = Vector2(2.04, 0.48)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("3_2guim")]
+position = Vector2(112, 555)
+scale = Vector2(0.851104, 0.941042)
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+limit_left = 0
+limit_top = 0
+limit_right = 6040
+limit_bottom = 630
+
+[node name="HUD" parent="." instance=ExtResource("4_s4f3k")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameOverScreen" parent="CanvasLayer" instance=ExtResource("6_jhheq")]
+visible = false
+
+[node name="GoalArea" parent="." instance=ExtResource("7_7kkjw")]
+position = Vector2(5616, 576)
+level_id = 2
+
+[node name="TUTORIALTEXTO" type="Node2D" parent="."]
+
+[node name="TUTORIAL" parent="TUTORIALTEXTO" instance=ExtResource("8_7ucmu")]
+position = Vector2(192, 624)
+mensaje_tutorial = "Cuidado con los picos"
+
+[node name="TUTORIAL2" parent="TUTORIALTEXTO" instance=ExtResource("8_7ucmu")]
+position = Vector2(2877, 624)
+mensaje_tutorial = "¡CORRE!"
+
+[node name="TUTORIAL3" parent="TUTORIALTEXTO" instance=ExtResource("8_7ucmu")]
+position = Vector2(4784, 624)
+mensaje_tutorial = "Eso estuvo cerca"
+
+[node name="NPCS" type="Node" parent="."]
+
+[node name="ChaseTrigger" parent="NPCS" instance=ExtResource("12_2guim")]
+position = Vector2(2877, 488)
+
+[node name="ChaseTrigger2" parent="NPCS" instance=ExtResource("12_2guim")]
+position = Vector2(4784, 478)
+mode = 1
+
+[node name="esqueleto" parent="NPCS" instance=ExtResource("11_u3ujj")]
+position = Vector2(1376, 520)
+
+[node name="HealObject" parent="." instance=ExtResource("12_s4f3k")]
+position = Vector2(3688, 432)
+
+[connection signal="health_updated" from="CharacterBody2D" to="HUD" method="_on_character_body_2d_health_updated"]
+[connection signal="player_died" from="CharacterBody2D" to="." method="_on_character_body_2d_player_died"]

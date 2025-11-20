@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://w3x4jaag5y3y"
+path="res://.godot/imported/Video-Project (1).mp3-b0d9f4b872c3e6f95bccdaf091ff41a4.mp3str"
+
+[deps]
+
+source_file="res://assets/effects/Video-Project (1).mp3"
+dest_files=["res://.godot/imported/Video-Project (1).mp3-b0d9f4b872c3e6f95bccdaf091ff41a4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

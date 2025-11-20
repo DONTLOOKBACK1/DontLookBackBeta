@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cifxrlnxfs7q2"]
+
+[ext_resource type="Script" uid="uid://binbbdjmkfwx5" path="res://src/niveles/levelassets/death_zone.gd" id="1_sxnan"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3h3qy"]
+
+[node name="DeathZone" type="Area2D"]
+scale = Vector2(83.12, 1)
+collision_mask = 2
+script = ExtResource("1_sxnan")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(7, 2)
+shape = SubResource("RectangleShape2D_3h3qy")

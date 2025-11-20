@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3rgjq68ptgur"]
+
+[ext_resource type="Texture2D" uid="uid://ctvvfn7sv5oqh" path="res://assets/niveles/Backgrounds/imagen_2025-11-18_224333493.png" id="1_iybo4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_40pye"]
+size = Vector2(296, 42)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_iybo4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-303, -38)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_40pye")

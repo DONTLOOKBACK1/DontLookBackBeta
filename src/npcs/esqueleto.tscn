@@ -1,0 +1,171 @@
+[gd_scene load_steps=11 format=3 uid="uid://b0knqwc27x0u1"]
+
+[ext_resource type="Script" uid="uid://bff3vfurubagu" path="res://src/npcs/esqueleto.gd" id="1_as160"]
+[ext_resource type="Texture2D" uid="uid://b8vc51hfpd5yw" path="res://assets/enemys/esqueleto con palo.png" id="2_xvjlr"]
+[ext_resource type="AudioStream" uid="uid://b0pbxip0nmrul" path="res://assets/effects/esqueletos.mp3" id="3_geeb4"]
+
+[sub_resource type="Animation" id="Animation_17l3d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_uap5i"]
+resource_name = "attack"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [10, 11, 12]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.133333, 0.233333),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_enemy_enable_hitbox"
+}, {
+"args": [],
+"method": &"_enemy_disable_hitbox"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_l8myd"]
+resource_name = "run"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [30, 31, 32, 33, 34, 35]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GrowlSound")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.233333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t5dyw"]
+_data = {
+&"RESET": SubResource("Animation_17l3d"),
+&"attack": SubResource("Animation_uap5i"),
+&"run": SubResource("Animation_l8myd")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uap5i"]
+radius = 553.138
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_17l3d"]
+size = Vector2(35.7635, 83.9078)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l8myd"]
+size = Vector2(92.6178, 174.27)
+
+[node name="esqueleto" type="CharacterBody2D" groups=["enemigos"]]
+scale = Vector2(0.39146, 0.413152)
+collision_layer = 8
+script = ExtResource("1_as160")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_t5dyw")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 19.3633)
+scale = Vector2(3.14, 3.14)
+texture = ExtResource("2_xvjlr")
+hframes = 5
+vframes = 8
+region_rect = Rect2(11, 14, 621, 979)
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_uap5i")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5.68434e-14)
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_17l3d")
+
+[node name="ContactHurtbox" type="Area2D" parent="."]
+scale = Vector2(3, 3)
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ContactHurtbox"]
+position = Vector2(0, 2.84217e-14)
+shape = SubResource("RectangleShape2D_17l3d")
+
+[node name="Pivot" type="Node2D" parent="."]
+
+[node name="AttackHitbox" type="Area2D" parent="Pivot"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/AttackHitbox"]
+position = Vector2(81.7453, 0)
+shape = SubResource("RectangleShape2D_l8myd")
+disabled = true
+
+[node name="WallDetector" type="RayCast2D" parent="."]
+scale = Vector2(5.675, 2.885)
+target_position = Vector2(36.0111, -40.2704)
+
+[node name="EdgeDetector" type="RayCast2D" parent="."]
+scale = Vector2(5.675, 2.885)
+target_position = Vector2(28.8089, 46.9821)
+
+[node name="GrowlTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="GrowlSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_geeb4")
+bus = &"SFX"
+
+[connection signal="timeout" from="GrowlTimer" to="." method="_on_growl_timer_timeout"]
