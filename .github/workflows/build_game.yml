@@ -25,13 +25,14 @@ jobs:
       - name: Install unzip (helper)
         run: sudo apt-get update && sudo apt-get install -y unzip
 
-      - name: Export with Godot Export Action
-        uses: firebelley/godot-export@v1
+      - name: Export Godot Project
+        uses: izzyOLT/godot-ci@v4
         with:
-          godot-version: '4.2.4'        # Ajusta según la versión de tu proyecto
-          export-presets: 'export_presets.cfg'
-          preset: 'Windows Desktop'     # Ajusta al nombre real del preset
-          output-dir: 'build'
+          godot-version: "4.2.4"
+          export-template: true
+          preset: "Windows Desktop"
+          project-path: "."
+          output-path: "build/"
 
       - name: Create zip of build
         run: |
