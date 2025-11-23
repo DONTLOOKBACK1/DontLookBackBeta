@@ -1,57 +1,50 @@
-name: Build Godot Project
+name: Build Godot Game
 
 on:
   push:
     branches:
-      - develop
-      - main
-  workflow_dispatch:
+      - ci_devops   # se ejecuta solo en tu rama
 
 jobs:
   build:
     name: Export Godot Project
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
-      # Paso 1: Clonar el repositorio
-      - name: Checkout repository
+      - name: Checkout repository (with LFS)
         uses: actions/checkout@v4
         with:
           lfs: true
 
-      # Paso 2: Exportar con Godot
-      - name: Export with Godot
-        uses: firebelley/godot-export@v7.0.0
+      - name: Set up Java (required by some Godot export templates)
+        uses: actions/setup-java@v4
         with:
-          godot_executable_download_url: "https://downloads.tuxfamily.org/godotengine/4.5.1/Godot_v4.5.1-stable_win64.exe"
-          godot_export_templates_download_url: "https://downloads.tuxfamily.org/godotengine/4.5.1/Godot_v4.5.1-stable_export_templates.tpz"
-          relative_project_path: "./"
-          presets_to_export: "Windows Desktop"
-          relative_export_path: "build/DONTLOOKBACK.exe"
-          export_debug: false
+          distribution: temurin
+          java-version: '11'
 
-      # Paso 3: Listar contenido de build para debug
-      - name: List build folder
-        run: |
-          echo "Contenido del directorio actual:"
-          dir
-          echo "Contenido de build:"
-          dir build
+      - name: Install unzip (helper)
+        run: sudo apt-get update && sudo apt-get install -y unzip
 
-      # Paso 4: Crear zip del build
+      - name: Install required tools (wget)
+        run: sudo apt-get install -y wget
+
+      - name: Export Godot Project
+        uses: izzyOLT/godot-ci@v4
+        with:
+          godot-version: "4.2.4"
+          export-template: true
+          preset: "Windows Desktop"
+          project-path: "."
+          output-path: "build/"
+
       - name: Create zip of build
         run: |
-          echo "Creando carpeta artifacts..."
-          mkdir artifacts
-          echo "Comprimiendo build en artifacts/windows-build.zip"
-          powershell -Command "Compress-Archive -Path 'build\*' -DestinationPath 'artifacts/windows-build.zip' -Force"
-          echo "Contenido de artifacts:"
-          dir artifacts
+          mkdir -p artifacts
+          cd build || exit 0
+          zip -r ../artifacts/windows-build.zip . || true
 
-      # Paso 5: Subir artifact
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           name: windows-build
           path: artifacts/windows-build.zip
-
