@@ -13,6 +13,10 @@ enum TriggerMode { START_CHASE, STOP_CHASE }
 @export_group("Start Chase Settings")
 @export var shadow_scene: PackedScene
 @onready var spawn_point: Marker2D = $SpawnPoint
+
+# --- NUEVO: Control de Música ---
+@export_subgroup("Audio Settings")
+@export var play_chase_music: bool = true # Si es true, pone música. Si es false, es silencioso.
 @onready var chase_music_player: AudioStreamPlayer = $ChaseMusicPlayer
 
 # --- Nodos y Variables Internas ---
@@ -28,62 +32,58 @@ func _ready():
 			print("¡ERROR! 'shadow_scene' no está asignada en el EventTrigger (START).")
 		if not spawn_point:
 			print("¡ERROR! No se encontró el nodo hijo 'SpawnPoint' en el EventTrigger (START).")
-		if not chase_music_player:
-			print("¡ERROR! No se encontró el nodo hijo 'ChaseMusicPlayer' en el EventTrigger (START).")
+		
+		# MODIFICADO: Solo damos error del MusicPlayer si tenemos activada la opción de música
+		if play_chase_music and not chase_music_player:
+			print("¡ERROR! Tienes 'play_chase_music' activado pero no se encontró 'ChaseMusicPlayer'.")
 
 
 func _on_body_entered(body):
-	# 1. Ignoramos todo si no es el jugador
 	if not body.is_in_group("player"):
 		return
 
-	# 2. Revisa qué modo tiene el trigger
 	match mode:
 		TriggerMode.START_CHASE:
-			# El modo START SÍ es de un solo uso
 			if not has_been_triggered:
 				has_been_triggered = true
-				collision_shape.set_deferred("disabled", true) # Se desactiva para siempre
+				collision_shape.set_deferred("disabled", true)
 				start_chase()
 		
 		TriggerMode.STOP_CHASE:
-			# El modo STOP NO es de un solo uso.
-			# No revisa 'has_been_triggered'.
-			# No desactiva la colisión.
-			# Simplemente se ejecuta.
 			stop_chase()
 
 
 # --- Lógica de INICIAR Persecución ---
 func start_chase():
 	
-	# --- ¡AÑADIDO! ---
-	# 1. Llama al MusicManager y para la música del nivel.
-	MusicManager.stop_music()
+	# --- MODIFICADO: Lógica Condicional de Música ---
+	# Solo ejecutamos los cambios de música si la casilla está activada
+	if play_chase_music:
+		# 1. Paramos la música ambiental
+		MusicManager.stop_music()
+		
+		# 2. Configuramos y reproducimos la música de persecución
+		if chase_music_player:
+			chase_music_player.add_to_group(CHASE_MUSIC_GROUP)
+			chase_music_player.play()
 	
-	# 2. Añadimos el reproductor de música al grupo para poder encontrarlo luego
-	chase_music_player.add_to_group(CHASE_MUSIC_GROUP)
-	chase_music_player.play()
-	
-	# 3. Instanciamos la sombra
-	var shadow_instance = shadow_scene.instantiate()
-	
-	# 4. Añadimos la sombra al grupo para poder encontrarla luego
-	shadow_instance.add_to_group(SHADOW_GROUP)
-	
-	# 5. La añadimos a la escena y la posicionamos
-	get_parent().add_child(shadow_instance)
-	shadow_instance.global_position = spawn_point.global_position
+	# --- Lógica de Spawn (Se ejecuta siempre) ---
+	if shadow_scene:
+		var shadow_instance = shadow_scene.instantiate()
+		shadow_instance.add_to_group(SHADOW_GROUP)
+		get_parent().add_child(shadow_instance)
+		shadow_instance.global_position = spawn_point.global_position
 
 
 # --- Lógica de DETENER Persecución ---
 func stop_chase():
-	# 1. Buscamos a TODOS los enemigos en el grupo "chase_enemy" y los eliminamos
+	# 1. Eliminar enemigos
 	get_tree().call_group(SHADOW_GROUP, "queue_free")
 	
-	# 2. Buscamos a TODOS los reproductores en el grupo "chase_music" y los paramos
+	# 2. Parar música de persecución (No importa si no estaba sonando, no dará error)
 	get_tree().call_group(CHASE_MUSIC_GROUP, "stop")
 	
-	# --- ¡LÍNEA MODIFICADA! ---
-	# 3. Reiniciamos la música del nivel que estaba guardada.
+	# 3. Restaurar música del nivel
+	# Nota: Si la música nunca se detuvo (porque play_chase_music era false),
+	# resume_level_music simplemente se asegurará de que siga sonando.
 	MusicManager.resume_level_music()

@@ -52,7 +52,7 @@ position = Vector2(400, 520)
 position = Vector2(800, 523)
 
 [node name="PLATAFORMA5" parent="PLATAFORMAS" instance=ExtResource("3_4iosf")]
-position = Vector2(1074, -5)
+position = Vector2(1072.29, -5.33154)
 
 [node name="PLATAFORMA6" parent="PLATAFORMAS" instance=ExtResource("3_4iosf")]
 position = Vector2(1376, 144)
@@ -70,7 +70,7 @@ position = Vector2(1377, 336)
 position = Vector2(1152, 571)
 
 [node name="PLATAFORMA11" parent="PLATAFORMAS" instance=ExtResource("3_4iosf")]
-position = Vector2(2157.39, -5.29739)
+position = Vector2(2157.67, -5.20509)
 
 [node name="PLATAFORMA15" parent="PLATAFORMAS" instance=ExtResource("3_4iosf")]
 position = Vector2(3233, 526)
@@ -79,7 +79,7 @@ position = Vector2(3233, 526)
 position = Vector2(3654, 432)
 
 [node name="PLATAFORMA24" parent="PLATAFORMAS" instance=ExtResource("3_4iosf")]
-position = Vector2(5120, 155)
+position = Vector2(5119.83, 155.084)
 
 [node name="PLATAFORMA18" parent="PLATAFORMAS" instance=ExtResource("3_4iosf")]
 position = Vector2(3977, 343)
@@ -96,13 +96,8 @@ position = Vector2(5699, 349)
 rotation = -1.5708
 scale = Vector2(1.88, 1)
 
-[node name="PLATAFORMA28" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("3_4iosf")]
-position = Vector2(5547, 165)
-rotation = -1.5708
-scale = Vector2(1.88, 1)
-
 [node name="PLATAFORMA25" parent="PLATAFORMAS" instance=ExtResource("3_4iosf")]
-position = Vector2(5251, 396)
+position = Vector2(5250.92, 396.084)
 rotation = 1.5708
 scale = Vector2(1.88, 1)
 
@@ -124,17 +119,22 @@ position = Vector2(3976, 159)
 [node name="PLATAFORMA21" parent="PLATAFORMAS" instance=ExtResource("3_4iosf")]
 position = Vector2(4341, 320)
 
+[node name="PLATAFORMA29" parent="PLATAFORMAS" instance=ExtResource("3_4iosf")]
+position = Vector2(5412.38, -77.9131)
+
+[node name="PLATAFORMA28" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("3_4iosf")]
+position = Vector2(5547, 165)
+rotation = -1.5708
+scale = Vector2(1.88, 1)
+
 [node name="PLATAFORMA22" parent="PLATAFORMAS" instance=ExtResource("3_4iosf")]
 position = Vector2(5580, 593)
 
 [node name="PLATAFORMA26" parent="PLATAFORMAS" instance=ExtResource("3_4iosf")]
 position = Vector2(4698, 235)
 
-[node name="PLATAFORMA29" parent="PLATAFORMAS" instance=ExtResource("3_4iosf")]
-position = Vector2(5411, -67)
-
 [node name="PLATAFORMA13" parent="PLATAFORMAS" instance=ExtResource("3_4iosf")]
-position = Vector2(2634, -5)
+position = Vector2(2634.61, -5.24569)
 
 [node name="PLATAFORMA4" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("3_4iosf")]
 position = Vector2(928, 184)

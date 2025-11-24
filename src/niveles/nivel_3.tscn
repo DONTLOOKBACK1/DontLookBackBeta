@@ -67,7 +67,7 @@ position = Vector2(1632, 408)
 position = Vector2(1886, 542)
 
 [node name="PLATAFORMA13" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
-position = Vector2(2177.04, 174.861)
+position = Vector2(2171.31, 176.84)
 scale = Vector2(1.04, 1)
 
 [node name="PLATAFORMA14" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
@@ -79,15 +79,15 @@ position = Vector2(2627, 378)
 scale = Vector2(1.04, 1)
 
 [node name="PLATAFORMA26" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
-position = Vector2(3120, 80)
+position = Vector2(3119.51, 81.5204)
 scale = Vector2(1.04, 1)
 
 [node name="PLATAFORMA27" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
-position = Vector2(3488, 132)
+position = Vector2(3486.45, 132.639)
 scale = Vector2(1.32, 1)
 
 [node name="PLATAFORMA28" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
-position = Vector2(3596, 244)
+position = Vector2(3593.46, 243.633)
 rotation = 1.5708
 scale = Vector2(1.32, 1)
 
@@ -96,7 +96,7 @@ position = Vector2(3704, 346)
 scale = Vector2(1.32, 1)
 
 [node name="PLATAFORMA31" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
-position = Vector2(4022, 510)
+position = Vector2(4024, 536)
 scale = Vector2(1.32, 1)
 
 [node name="PLATAFORMA33" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
@@ -108,7 +108,7 @@ position = Vector2(4680, 144)
 scale = Vector2(0.921825, 0.83639)
 
 [node name="PLATAFORMA39" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
-position = Vector2(5024, 107)
+position = Vector2(5023.87, 108.518)
 scale = Vector2(0.921825, 0.83639)
 
 [node name="PLATAFORMA41" parent="PLATAFORMAS" instance=ExtResource("11_ne3jc")]
@@ -263,7 +263,7 @@ position = Vector2(1884, 523)
 mensaje_tutorial = "El acido quema"
 
 [node name="TUTORIAL2" parent="TUTORIALTEXTO" instance=ExtResource("9_flfnj")]
-position = Vector2(5874, 394)
+position = Vector2(5461.71, 546.998)
 mensaje_tutorial = "¿Qué fue lo que paso aqui Akira?"
 
 [node name="NPCS" type="Node" parent="."]

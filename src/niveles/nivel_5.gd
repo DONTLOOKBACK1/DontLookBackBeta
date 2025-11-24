@@ -2,7 +2,7 @@ extends Node2D
 
 # --- AÑADIDO (Música) ---
 # Carga el archivo de música para ESTE nivel
-@export var level_music: AudioStream = preload("res://assets/music/Shadows Beneath.mp3") # <-- ¡Cambia esta ruta!
+@export var level_music: AudioStream = preload("res://assets/music/NIVEL 5 SOUND.mp3") # <-- ¡Cambia esta ruta!
 
 @export var level_id: int = 5
 @onready var game_over_screen = $CanvasLayer/GameOverScreen

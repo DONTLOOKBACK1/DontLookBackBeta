@@ -91,6 +91,7 @@ mensaje_tutorial = "¿Donde te viniste a meter?"
 
 [node name="ChaseTrigger" parent="." instance=ExtResource("10_0weyu")]
 position = Vector2(600, 427)
+play_chase_music = false
 
 [connection signal="health_updated" from="CharacterBody2D" to="HUD" method="_on_character_body_2d_health_updated"]
 [connection signal="player_died" from="CharacterBody2D" to="." method="_on_character_body_2d_player_died"]

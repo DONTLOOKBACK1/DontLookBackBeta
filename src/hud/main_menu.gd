@@ -9,6 +9,7 @@ extends Control
 @onready var exit_button = $VBoxContainer/CenterContainer/VBoxContainer/ExitButton
 
 func _ready():
+	MusicManager.play_music() 
 	play_button.pressed.connect(_on_play_pressed)
 	exit_button.pressed.connect(_on_exit_pressed)
 	config_button.pressed.connect(_on_config_pressed)

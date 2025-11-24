@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dg2xjbhr3yna7"
+path="res://.godot/imported/NIVEL 8 SOUND.mp3-1ac6046f4b894bbbb2784992e94e7235.mp3str"
+
+[deps]
+
+source_file="res://assets/music/NIVEL 8 SOUND.mp3"
+dest_files=["res://.godot/imported/NIVEL 8 SOUND.mp3-1ac6046f4b894bbbb2784992e94e7235.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

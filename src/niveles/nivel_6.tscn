@@ -53,19 +53,19 @@ position = Vector2(200, 376)
 [node name="PLATAFORMA4" parent="PLATAFORMAS" instance=ExtResource("3_658gq")]
 position = Vector2(617, 293)
 
-[node name="PLATAFORMA14" parent="PLATAFORMAS" instance=ExtResource("3_658gq")]
-position = Vector2(1286, 265)
-
 [node name="PLATAFORMA5" parent="PLATAFORMAS" instance=ExtResource("3_658gq")]
 position = Vector2(728, 396)
 rotation = 1.5708
 
 [node name="PLATAFORMA13" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("3_658gq")]
-position = Vector2(1397, 368)
+position = Vector2(1398, 368)
 rotation = 1.5708
 
+[node name="PLATAFORMA14" parent="PLATAFORMAS" instance=ExtResource("3_658gq")]
+position = Vector2(1285.82, 265)
+
 [node name="PLATAFORMA11" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("3_658gq")]
-position = Vector2(1096, 232)
+position = Vector2(1096.26, 208.037)
 rotation = 1.5708
 scale = Vector2(2.28, 1)
 
@@ -98,7 +98,7 @@ position = Vector2(1255, 132)
 rotation = 1.5708
 
 [node name="PLATAFORMA17" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("3_658gq")]
-position = Vector2(1682, 10)
+position = Vector2(1682.19, 10.1891)
 
 [node name="PLATAFORMA18" parent="PLATAFORMAS" instance=ExtResource("3_658gq")]
 position = Vector2(2114, 397)
@@ -142,12 +142,12 @@ position = Vector2(552, 0)
 rotation = 3.14159
 
 [node name="PLATAFORMA19" parent="PLATAFORMAS" groups=["climbable"] instance=ExtResource("3_658gq")]
-position = Vector2(2001, 441)
+position = Vector2(2000.76, 440.797)
 rotation = -1.5708
 scale = Vector2(0.44, 0.647059)
 
 [node name="PLATAFORMA24" parent="PLATAFORMAS" instance=ExtResource("3_658gq")]
-position = Vector2(2033, -44)
+position = Vector2(2031.98, -44)
 rotation = -1.5708
 
 [node name="PLATAFORMA9" parent="PLATAFORMAS" instance=ExtResource("3_658gq")]
@@ -187,6 +187,9 @@ position = Vector2(2787, 132)
 [node name="TUTORIAL" parent="NPCS" instance=ExtResource("9_1deja")]
 position = Vector2(3464, 78)
 mensaje_tutorial = "¿Realmente vamos a algun lado?"
+
+[node name="HealObject2" parent="NPCS" instance=ExtResource("8_x4mql")]
+position = Vector2(1255.29, 400.108)
 
 [node name="eater" parent="." instance=ExtResource("10_658gq")]
 position = Vector2(2483, 536)
